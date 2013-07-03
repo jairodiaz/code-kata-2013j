@@ -17,7 +17,7 @@ describe SimpleImageEditor::CommandRunner do
 
         it "should return true" do
           command_line = "#{COMMAND_ID}"
-          expect(SimpleImageEditor::Command.run_for(image, command_line)).to eql(true)
+          expect(SimpleImageEditor::Command.apply_on(image, command_line)).to eql(true)
         end
       end
 
@@ -34,14 +34,14 @@ describe SimpleImageEditor::CommandRunner do
         context 'when the command line has exactly the required number of arguments' do
           it "should return true" do
             command_line = "#{COMMAND_WITH_ARGS_ID} arg1 arg2"
-            expect(SimpleImageEditor::Command.run_for(image, command_line)).to eql(true)
+            expect(SimpleImageEditor::Command.apply_on(image, command_line)).to eql(true)
           end
         end
 
         context 'when the command line DOES NOT have the required number of arguments' do
           it "should return the image" do
             command_line = "#{COMMAND_WITH_ARGS_ID} arg1"
-            expect(SimpleImageEditor::Command.run_for(image, command_line)).to equal(image)
+            expect(SimpleImageEditor::Command.apply_on(image, command_line)).to equal(image)
           end
         end
       end
@@ -52,7 +52,7 @@ describe SimpleImageEditor::CommandRunner do
       it "should return the image" do
         define_invalid_key = "."
         command_line = "#{define_invalid_key} some other text"
-        expect(SimpleImageEditor::Command.run_for(image, command_line)).to equal(image)
+        expect(SimpleImageEditor::Command.apply_on(image, command_line)).to equal(image)
       end
     end
 
@@ -74,7 +74,7 @@ describe SimpleImageEditor::CommandRunner do
             end
           end
           command_line = "#{COMMAND_WITH_VALIDATION_ID} 1 2"
-          expect(SimpleImageEditor::Command.run_for(image, command_line)).to equal(true)
+          expect(SimpleImageEditor::Command.apply_on(image, command_line)).to equal(true)
         end
       end
 
@@ -86,7 +86,7 @@ describe SimpleImageEditor::CommandRunner do
             end
           end
           command_line = "#{COMMAND_WITH_VALIDATION_ID} 0 0"
-          expect(SimpleImageEditor::Command.run_for(image, command_line)).to equal(image)
+          expect(SimpleImageEditor::Command.apply_on(image, command_line)).to equal(image)
         end
       end
     end

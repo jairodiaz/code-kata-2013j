@@ -1,6 +1,6 @@
 module SimpleImageEditor
   module CommandRunner
-    def run_for(image, command_line)
+    def apply_on(image, command_line)
       command_args = command_line.split
       command_id = command_args.shift
       command = command_for(command_id, command_args)

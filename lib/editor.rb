@@ -14,13 +14,14 @@ require "commands/fill"
 require "commands/draw_border"
 
 module SimpleImageEditor
+
   class Editor
 
     def initialize
       image = Image.new
       loop do
-        image = Command.run_for(image, ask_which_command)
-        break unless image
+        image = Command.apply_on image, selected_command
+        break if image.nil?
       end
       Kernel.puts "Session terminated"
     end
@@ -29,10 +30,11 @@ module SimpleImageEditor
 
     COMMAND_PROMPT = '> '
 
-    def ask_which_command
+    def selected_command
       Kernel.print COMMAND_PROMPT
       Kernel.gets.chomp
     end
 
   end
+
 end
