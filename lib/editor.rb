@@ -18,7 +18,9 @@ module SimpleImageEditor
 
     def initialize
       image = Image.new
-      while image = Command.run_for(image, ask_which_command)
+      loop do
+        image = Command.run_for(image, ask_which_command)
+        break unless image
       end
       Kernel.puts "Session terminated"
     end
