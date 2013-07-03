@@ -8,7 +8,7 @@ describe SimpleImageEditor::CommandRunner do
 
       context 'when there is not arguments' do
         COMMAND_ID = '-'
-        class MySubclassCommand < SimpleImageEditor::Command
+        class MySimpleSubclassCommand < SimpleImageEditor::Command
           define_key COMMAND_ID
           def transform(image=nil,args=nil)
             true

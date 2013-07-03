@@ -2,11 +2,10 @@ require 'spec_helper'
 
 describe SimpleImageEditor::Command do
 
-  COMMAND_ID = '-'
+  COMMAND_KEY = '+'
   class MySubclassCommand < SimpleImageEditor::Command
-    define_key COMMAND_ID
+    define_key COMMAND_KEY
     def transform(image=nil,args=nil)
-      true
     end
   end
 
@@ -18,7 +17,7 @@ describe SimpleImageEditor::Command do
 
   describe "#id" do
     it "has a command id" do
-      expect(MySubclassCommand.id).to eql(COMMAND_ID)
+      expect(MySubclassCommand.id).to eql(COMMAND_KEY)
     end
   end
 

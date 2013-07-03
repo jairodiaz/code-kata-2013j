@@ -7,4 +7,5 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-nav'
   gem 'awesome_print'
+  gem 'simplecov', :require => false
 end
