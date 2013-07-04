@@ -11,7 +11,7 @@ describe SimpleImageEditor::Command do
 
 	describe "#list_of_classes" do
     it "returns a command subclass" do
-      expect(SimpleImageEditor::CommandRunner.list_of_classes).to include(MySubclassCommand)
+      expect(SimpleImageEditor::CommandRunner.list_of_classes).not_to include(MySubclassCommand)
     end
   end
 

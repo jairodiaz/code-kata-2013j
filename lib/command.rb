@@ -16,10 +16,6 @@ module SimpleImageEditor
       def total_of_arguments
         @number_of_arguments || 0
       end
-
-      def inherited(subclass)
-        SimpleImageEditor::CommandRunner.list_of_classes << subclass
-      end
     end
   end
 end
