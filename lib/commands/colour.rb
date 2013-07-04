@@ -10,6 +10,4 @@ module SimpleImageEditor
       validates_color_for(args[2])
     end
   end
-
-  SimpleImageEditor::CommandRunner.add_command ColourCommand
 end

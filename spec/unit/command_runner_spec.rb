@@ -1,11 +1,14 @@
 require 'spec_helper'
 
 describe SimpleImageEditor::CommandRunner do
+  before (:all) do
+    @command_runner = SimpleImageEditor::CommandRunner.new
+  end
 
   describe "#command" do
     it 'adds a command to the list' do
-      SimpleImageEditor::CommandRunner.command ">"
-      expect(SimpleImageEditor::CommandRunner.list_of_classes.last.id).to eq(">")
+      @command_runner.command ">"
+      expect(@command_runner.list_of_classes.last.id).to eq(">")
     end
   end
 
@@ -14,8 +17,8 @@ describe SimpleImageEditor::CommandRunner do
       command = Class.new(SimpleImageEditor::Command) do
         define_key '<'
       end
-      SimpleImageEditor::CommandRunner.add_command command
-      expect(SimpleImageEditor::CommandRunner.list_of_classes.last.id).to eq("<")
+      @command_runner.add_command command
+      expect(@command_runner.list_of_classes.last.id).to eq("<")
     end
   end
 
@@ -34,36 +37,47 @@ describe SimpleImageEditor::CommandRunner do
             end
           end
 
-          SimpleImageEditor::CommandRunner.add_command command
-
+          @command_runner.add_command command
           command_line = "#{COMMAND_ID}"
-          expect(SimpleImageEditor::CommandRunner.apply_on(image, command_line)).to eql(true)
+          expect(@command_runner.apply_on(image, command_line)).to eql(true)
         end
       end
 
       context 'when there is a specific number of arguments' do
-        COMMAND_WITH_ARGS_ID = ":"
-        command = Class.new(SimpleImageEditor::Command) do
-          define_key COMMAND_WITH_ARGS_ID
-          number_of_arguments 2
-          def transform(image=nil,args=nil)
-            true
-          end
-        end
-
-        SimpleImageEditor::CommandRunner.add_command command
 
         context 'when the command line has exactly the required number of arguments' do
           it "should return true" do
+
+            COMMAND_WITH_ARGS_ID = ":"
+            command = Class.new(SimpleImageEditor::Command) do
+              define_key COMMAND_WITH_ARGS_ID
+              number_of_arguments 2
+              def transform(image=nil,args=nil)
+                true
+              end
+            end
+
+            @command_runner.add_command command
             command_line = "#{COMMAND_WITH_ARGS_ID} arg1 arg2"
-            expect(SimpleImageEditor::CommandRunner.apply_on(image, command_line)).to eql(true)
+            expect(@command_runner.apply_on(image, command_line)).to eql(true)
           end
         end
 
         context 'when the command line DOES NOT have the required number of arguments' do
           it "should return the image" do
+
+            COMMAND_WITH_ARGS_ID = ":"
+            command = Class.new(SimpleImageEditor::Command) do
+              define_key COMMAND_WITH_ARGS_ID
+              number_of_arguments 2
+              def transform(image=nil,args=nil)
+                # Never called
+              end
+            end
+
+            @command_runner.add_command command
             command_line = "#{COMMAND_WITH_ARGS_ID} arg1"
-            expect(SimpleImageEditor::CommandRunner.apply_on(image, command_line)).to equal(image)
+            expect(@command_runner.apply_on(image, command_line)).to equal(image)
           end
         end
       end
@@ -74,7 +88,7 @@ describe SimpleImageEditor::CommandRunner do
       it "should return the image" do
         define_invalid_key = "."
         command_line = "#{define_invalid_key} some other text"
-        expect(SimpleImageEditor::CommandRunner.apply_on(image, command_line)).to equal(image)
+        expect(@command_runner.apply_on(image, command_line)).to equal(image)
       end
     end
 
@@ -93,9 +107,9 @@ describe SimpleImageEditor::CommandRunner do
             end
           end
 
-          SimpleImageEditor::CommandRunner.add_command command
+          @command_runner.add_command command
           command_line = "#{COMMAND_WITH_VALIDATION_ID} 1 2"
-          expect(SimpleImageEditor::CommandRunner.apply_on(image, command_line)).to equal(true)
+          expect(@command_runner.apply_on(image, command_line)).to equal(true)
         end
       end
 
@@ -106,16 +120,16 @@ describe SimpleImageEditor::CommandRunner do
             define_key COMMAND_WITH_VALIDATION_ID
             number_of_arguments 2
             def transform(image=nil,args=nil)
-              # never called
+              # Never called
             end
             def validates_format_for(args=nil)
               false
             end
           end
 
-          SimpleImageEditor::CommandRunner.add_command command
+          @command_runner.add_command command
           command_line = "#{COMMAND_WITH_VALIDATION_ID} 0 0"
-          expect(SimpleImageEditor::CommandRunner.apply_on(image, command_line)).to equal(image)
+          expect(@command_runner.apply_on(image, command_line)).to equal(image)
         end
       end
     end

@@ -17,31 +17,40 @@ module SimpleImageEditor
 
   # Edits images taking commands using a read-eval-loop.
   class Editor
-    class << self
 
+    # Initialize the application components
+    def initialize
+      @command_runner = CommandRunner.new
 
-      # Start a read-eval-loop.
-      def read_eval_loop
-        image = Image.new
-        loop do
-          input_command = read_command
-          image = CommandRunner.apply_on image, input_command
-          break if image.nil?
-        end
-        Kernel.puts "Session terminated"
+      commands = [ColourCommand, ClearCommand, DrawBorderCommand,
+                  ExitCommand, FillCommand, HorizontalCommand,
+                  NewImageCommand, ShowCommand, VerticalCommand]
+
+      commands.map { |command| @command_runner.add_command command }
+
+      @image = Image.new
+      read_eval_loop
+    end
+
+    private
+
+    # Start a read-eval-loop.
+    def read_eval_loop
+      loop do
+        selected_command = read_command
+        @image = @command_runner.apply_on @image, selected_command
+        break if @image.nil?
       end
+      Kernel.puts "Session terminated"
+    end
 
-      private
+    # The string used as the command prompt
+    COMMAND_PROMPT = '> '
 
-      # The string used as the command prompt
-      COMMAND_PROMPT = '> '
-
-      # Read the command from standart input
-      def read_command
-        Kernel.print COMMAND_PROMPT
-        Kernel.gets.chomp
-      end
-
+    # Read the command from standart input
+    def read_command
+      Kernel.print COMMAND_PROMPT
+      Kernel.gets.chomp
     end
   end
 end
