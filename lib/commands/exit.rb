@@ -5,4 +5,6 @@ module SimpleImageEditor
       nil
     end
   end
+
+  SimpleImageEditor::CommandRunner.add_command ExitCommand
 end

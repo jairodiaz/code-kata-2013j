@@ -4,18 +4,18 @@ describe SimpleImageEditor::CommandRunner do
 
   describe "#command" do
     it 'adds a command to the list' do
-      SimpleImageEditor::CommandRunner.command "T"
-      expect(SimpleImageEditor::CommandRunner.list_of_classes.last.id).to eq("T")
+      SimpleImageEditor::CommandRunner.command ">"
+      expect(SimpleImageEditor::CommandRunner.list_of_classes.last.id).to eq(">")
     end
   end
 
   describe "#add_command" do
     it 'adds a command to the list' do
       command = Class.new(SimpleImageEditor::Command) do
-        define_key 'X'
+        define_key '<'
       end
       SimpleImageEditor::CommandRunner.add_command command
-      expect(SimpleImageEditor::CommandRunner.list_of_classes.last.id).to eq("X")
+      expect(SimpleImageEditor::CommandRunner.list_of_classes.last.id).to eq("<")
     end
   end
 
@@ -106,7 +106,7 @@ describe SimpleImageEditor::CommandRunner do
             define_key COMMAND_WITH_VALIDATION_ID
             number_of_arguments 2
             def transform(image=nil,args=nil)
-              true
+              # never called
             end
             def validates_format_for(args=nil)
               false

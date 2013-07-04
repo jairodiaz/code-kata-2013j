@@ -10,4 +10,6 @@ module SimpleImageEditor
       validates_color_for(args[3])
     end
   end
+
+  SimpleImageEditor::CommandRunner.add_command HorizontalCommand
 end

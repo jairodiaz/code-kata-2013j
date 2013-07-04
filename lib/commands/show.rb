@@ -7,6 +7,8 @@ module SimpleImageEditor
     end
   end
 
+  SimpleImageEditor::CommandRunner.add_command ShowCommand
+
   private
 
   class DisplayImage

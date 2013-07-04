@@ -5,4 +5,7 @@ module SimpleImageEditor
       image.clear
     end
   end
+
+  SimpleImageEditor::CommandRunner.add_command ClearCommand
 end
+

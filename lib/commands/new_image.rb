@@ -9,4 +9,5 @@ module SimpleImageEditor
       validates_numericality_of args[0], args[1]
     end
   end
+  SimpleImageEditor::CommandRunner.add_command NewImageCommand
 end
