@@ -35,4 +35,43 @@ describe SimpleImageEditor::Command do
         my_command.transform(:image, :arg0, :arg1)
     end
   end
+
+  describe "#argument_types" do
+    it "should respond to argument_types" do
+      new_command = Class.new(SimpleImageEditor::Command)
+      expect(new_command).to respond_to :argument_types
+    end
+  end
+
+  describe "#validates_format_for" do
+    it "should check Integer arguments" do
+      new_command = Class.new(SimpleImageEditor::Command)
+      new_command.argument_types = [Integer]
+      expect(new_command.new.validates_format_for(["3"])).to be_true
+    end
+
+    it "should check String arguments" do
+      new_command = Class.new(SimpleImageEditor::Command)
+      new_command.argument_types = [String]
+      expect(new_command.new.validates_format_for(["C"])).to be_true
+    end
+
+    it "should check String and Integer arguments" do
+      new_command = Class.new(SimpleImageEditor::Command)
+      new_command.argument_types = [Integer, Integer, String]
+      expect(new_command.new.validates_format_for(["1", "1", "C"])).to be_true
+    end
+
+    it "should check String and Integer arguments" do
+      new_command = Class.new(SimpleImageEditor::Command)
+      new_command.argument_types = [Integer, Integer, String]
+      expect(new_command.new.validates_format_for(["1", "1", "0"])).to be_false
+    end
+
+    it "should return true if argument_types is not defined" do
+      new_command = Class.new(SimpleImageEditor::Command)
+      new_command.argument_types = nil
+      expect(new_command.new.validates_format_for(["1", "1"])).to be_true
+    end
+  end
 end

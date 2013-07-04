@@ -21,6 +21,11 @@ describe SimpleImageEditor::CommandRunner do
       @command_runner.command ">", [Integer, String]
       expect(@command_runner.commands.last.total_of_arguments).to eq(2)
     end
+
+    it 'should add argument_types to the command' do
+      @command_runner.command ">", [Integer, String]
+      expect(@command_runner.commands.last.argument_types).to eq([Integer, String])
+    end
   end
 
   describe "#add_command" do

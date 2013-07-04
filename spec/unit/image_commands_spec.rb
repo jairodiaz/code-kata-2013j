@@ -36,9 +36,26 @@ describe SimpleImageEditor::ImageCommands do
       it "should expect 3 arguments" do
        expect(SimpleImageEditor::ImageCommands.new.commands[3].total_of_arguments).to eql(3)
       end
+
       it "should call to fill region on the image" do
         image.should_receive(:fill_region).with(2, 4, "C")
         SimpleImageEditor::ImageCommands.new.apply_on image, 'F 2 4 C'
+      end
+
+      describe "#validates_format_for" do
+        context "when the arguments are two numbers and a character" do
+          it "should return true " do
+            expect(SimpleImageEditor::ImageCommands.new.commands[3].new.validates_format_for ["1", "1", "C"]).to be_true
+          end
+        end
+
+        context "when the arguments are NOT three numbers and a character" do
+          it "should return false" do
+            expect(SimpleImageEditor::ImageCommands.new.commands[3].new.validates_format_for ["C", "3", "C"]).to be_false
+            expect(SimpleImageEditor::ImageCommands.new.commands[3].new.validates_format_for ["1", "3", "0"]).to be_false
+          end
+        end
+
       end
     end
   end

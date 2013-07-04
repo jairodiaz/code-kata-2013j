@@ -12,7 +12,7 @@ module SimpleImageEditor
 
     class << self
       attr_reader :key
-      attr_accessor :block
+      attr_accessor :block, :argument_types
 
       # Defines the keyboard key that identifies the command.
       # @param key The keyboard key.
@@ -40,5 +40,19 @@ module SimpleImageEditor
         block.call(image, *args)
       end
     end
+
+    # Returns true if all the arguments are of valid type.
+    # @param args The arguments to be checked.
+    # @return [boolean].
+    def validates_format_for(args)
+      return true if self.class.argument_types.nil?
+      args.each_with_index do |arg, index|
+        result = self.class.argument_types[index] == Integer ? validates_numericality_of(arg)
+                                                             : validates_color_for(arg)
+        return false unless result
+      end
+      true
+    end
+
   end
 end

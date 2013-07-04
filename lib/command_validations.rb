@@ -1,6 +1,5 @@
 module SimpleImageEditor
   module CommandValidations
-
     # Returns true if all the arguments are numbers between 1 and 250.
     # @param args The arguments to be checked.
     # @return [boolean].

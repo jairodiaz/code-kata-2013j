@@ -8,7 +8,6 @@ require "commands/new_image"
 require "commands/colour"
 require "commands/vertical"
 require "commands/horizontal"
-require "commands/fill"
 require "commands/draw_border"
 
 module SimpleImageEditor

@@ -28,6 +28,7 @@ module SimpleImageEditor
       new_class.define_key key
       new_class.number_of_arguments argument_types.size
       new_class.block = block
+      new_class.argument_types = argument_types
       commands << new_class
     end
 
