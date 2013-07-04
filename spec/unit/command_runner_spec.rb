@@ -6,14 +6,16 @@ describe SimpleImageEditor::CommandRunner do
   end
 
   describe "#command" do
-    it 'adds a command to the list' do
+    it 'should add a command to the list' do
       @command_runner.command ">"
       expect(@command_runner.commands.last.key).to eq(">")
     end
+
+    it ''
   end
 
   describe "#add_command" do
-    it 'adds a command to the list' do
+    it 'should add a command to the list' do
       command = Class.new(SimpleImageEditor::Command) do
         define_key '<'
       end
@@ -94,7 +96,7 @@ describe SimpleImageEditor::CommandRunner do
 
     context 'when method validates_format_for is present' do
       context "when the argument format is valid" do
-        it "returns true" do
+        it "should return true" do
           stub_const("COMMAND_WITH_VALIDATION_ID", ";")
           command = Class.new(SimpleImageEditor::Command) do
             define_key COMMAND_WITH_VALIDATION_ID
@@ -114,7 +116,7 @@ describe SimpleImageEditor::CommandRunner do
       end
 
       context "when the argument format is invalid" do
-        it "returns the image" do
+        it "should return the image" do
           stub_const("COMMAND_WITH_VALIDATION_ID", ",")
           command = Class.new(SimpleImageEditor::Command) do
             define_key COMMAND_WITH_VALIDATION_ID
