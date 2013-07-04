@@ -43,11 +43,21 @@ module SimpleImageEditor
     # Any other pixel which is the same colour as (X,Y) and shares a common side with any
     # pixel in R also belongs to this region.
     def fill_region(x, y, new_colour, old_colour=nil, border_colour=nil)
+      # The recursive algorithm. Starting at x and y, changes any adjacent
+      # characters that match old_colour to new_colour.
+      # This algorithm was taken from:
+      # http://inventwithpython.com/blog/2011/08/11/recursion-explained-with-the-flood-fill-algorithm-and-zombies-and-cats/
+
+      # Adjust algorithm coordinates because the image first pixel is (1,1)
+      # but the algorith requires (0,0).
       if old_colour.nil?
         x -= 1; y -= 1
         old_colour = @content[x][y]
       end
 
+      # Base case. If the current x, y character is not the old_colour,
+      # then do nothing. However, the current character may be a border
+      # so check it.
       if (@content[x][y] != old_colour)
         colour_border(x, y, new_colour, border_colour) if border_colour
         return
@@ -55,6 +65,8 @@ module SimpleImageEditor
 
       @content[x][y] = new_colour
 
+      # Recursive calls. Make a recursive call as long as we are not on the
+      # boundary (which would cause an Error).
       fill_region(x-1, y, new_colour, old_colour, border_colour) if x > 0
       fill_region(x, y-1, new_colour, old_colour, border_colour) if y > 0
       fill_region(x+1, y, new_colour, old_colour, border_colour) if x < @width - 1
