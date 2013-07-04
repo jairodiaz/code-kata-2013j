@@ -9,6 +9,16 @@ describe SimpleImageEditor::CommandRunner do
     end
   end
 
+  describe "#add_command" do
+    it 'adds a command to the list' do
+      command = Class.new(SimpleImageEditor::Command) do
+        define_key 'X'
+      end
+      SimpleImageEditor::CommandRunner.add_command command
+      expect(SimpleImageEditor::CommandRunner.list_of_classes.last.id).to eq("X")
+    end
+  end
+
   describe "#apply_on" do
     let(:image) { double('image') }
 

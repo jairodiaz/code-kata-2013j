@@ -18,6 +18,10 @@ module SimpleImageEditor
         SimpleImageEditor::CommandRunner.list_of_classes << new_class
       end
 
+      def add_command(command_class)
+        SimpleImageEditor::CommandRunner.list_of_classes << command_class
+      end
+
       private
 
       def command_for(command_id, command_args)
