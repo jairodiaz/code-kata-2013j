@@ -38,4 +38,5 @@ describe SimpleImageEditor::CommandValidations do
       end
     end
   end
+
 end

@@ -19,12 +19,13 @@ module SimpleImageEditor
   class Editor
     class << self
 
+
       # Start a read-eval-loop.
       def read_eval_loop
         image = Image.new
         loop do
           input_command = read_command
-          image = Command.apply_on image, input_command
+          image = CommandRunner.apply_on image, input_command
           break if image.nil?
         end
         Kernel.puts "Session terminated"

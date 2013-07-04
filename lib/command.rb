@@ -1,12 +1,9 @@
 module SimpleImageEditor
   class Command
     include SimpleImageEditor::CommandValidations
-    extend SimpleImageEditor::CommandRunner
-
-    @list_of_classes = []
 
     class << self
-      attr_reader :list_of_classes, :id
+    attr_reader :id
 
       def define_key(id)
         @id = id
@@ -21,7 +18,7 @@ module SimpleImageEditor
       end
 
       def inherited(subclass)
-        Command.list_of_classes << subclass
+        SimpleImageEditor::CommandRunner.list_of_classes << subclass
       end
     end
   end
