@@ -54,7 +54,7 @@ module SimpleImageEditor
     # Validates that the command exists and the number of arguments is correct.
     # @param command_class The class implementing the command.
     # @param command_args The arguments passed to the command.
-    # @return [true] True if the params are correct. False otherwise.
+    # @return [boolean] True if the params are correct. False otherwise.
     def validate_command_for(command_class, command_args)
       command_class &&
       (command_args.size == command_class.total_of_arguments) &&
@@ -65,7 +65,7 @@ module SimpleImageEditor
     # has been defined for the command.
     # @param command_class The class implementing the command.
     # @param command_args The arguments passed to the command.
-    # @return [true] True if the params are valid. False otherwise.
+    # @return [boolean] True if the params are valid. False otherwise.
     def validate_arguments_for(command_class, command_args)
       return true unless command_class.method_defined? :validates_format_for
       command_class.new.validates_format_for(command_args)

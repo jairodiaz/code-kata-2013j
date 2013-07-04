@@ -5,7 +5,7 @@ module SimpleImageEditor
     # @param args The arguments to be checked.
     # @return [boolean].
     def validates_numericality_of(*args)
-      args = args.map{ |arg| arg.to_i }
+      args = args.map(&:to_i)
       args.each { |arg| return false if arg < 1 || arg > 250 }
       true
     end
