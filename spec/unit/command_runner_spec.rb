@@ -25,17 +25,17 @@ describe SimpleImageEditor::CommandRunner do
     context 'when the command line has a command id which is defined by a command subclass' do
 
       context 'when there is not arguments' do
-        COMMAND_ID = '-'
-        command = Class.new(SimpleImageEditor::Command) do
-          define_key COMMAND_ID
-          def transform(image=nil,args=nil)
-            true
-          end
-        end
-
-        SimpleImageEditor::CommandRunner.add_command command
-
         it "should return true" do
+          stub_const("COMMAND_ID", "-")
+          command = Class.new(SimpleImageEditor::Command) do
+            define_key COMMAND_ID
+            def transform(image=nil,args=nil)
+              true
+            end
+          end
+
+          SimpleImageEditor::CommandRunner.add_command command
+
           command_line = "#{COMMAND_ID}"
           expect(SimpleImageEditor::CommandRunner.apply_on(image, command_line)).to eql(true)
         end
@@ -81,8 +81,7 @@ describe SimpleImageEditor::CommandRunner do
     context 'when method validates_format_for is present' do
       context "when the argument format is valid" do
         it "returns true" do
-
-          COMMAND_WITH_VALIDATION_ID = ";"
+          stub_const("COMMAND_WITH_VALIDATION_ID", ";")
           command = Class.new(SimpleImageEditor::Command) do
             define_key COMMAND_WITH_VALIDATION_ID
             number_of_arguments 2
@@ -102,9 +101,7 @@ describe SimpleImageEditor::CommandRunner do
 
       context "when the argument format is invalid" do
         it "returns the image" do
-
-
-          COMMAND_WITH_VALIDATION_ID = ","
+          stub_const("COMMAND_WITH_VALIDATION_ID", ",")
           command = Class.new(SimpleImageEditor::Command) do
             define_key COMMAND_WITH_VALIDATION_ID
             number_of_arguments 2

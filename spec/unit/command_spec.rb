@@ -1,36 +1,24 @@
 require 'spec_helper'
 
 describe SimpleImageEditor::Command do
+  let(:my_command) { Class.new(SimpleImageEditor::Command) }
 
-  COMMAND_KEY = '+'
-  class MySubclassCommand < SimpleImageEditor::Command
-    define_key COMMAND_KEY
-    def transform(image=nil,args=nil)
-    end
-  end
-
-	describe "#list_of_classes" do
-    it "returns a command subclass" do
-      expect(SimpleImageEditor::CommandRunner.list_of_classes).not_to include(MySubclassCommand)
-    end
-  end
-
-  describe "#id" do
+  describe "#define_key" do
     it "has a command id" do
-      expect(MySubclassCommand.id).to eql(COMMAND_KEY)
+      my_command.define_key "N"
+      expect(my_command.id).to eql("N")
     end
   end
 
-  describe "#arguments" do
+  describe "#number_of_arguments" do
     it "has a number of arguments" do
-      stub_const("ARGUMENTS", 5)
-      class MySubclassCommandWithArgs < SimpleImageEditor::Command; number_of_arguments ARGUMENTS; end
-      expect(MySubclassCommandWithArgs.total_of_arguments).to eql(ARGUMENTS)
+      my_command.number_of_arguments 5
+      expect(my_command.total_of_arguments).to eql(5)
     end
 
     it "has a default number of zero arguments" do
-      class MySubclassCommandWithNoArgs < SimpleImageEditor::Command; end
-      expect(MySubclassCommandWithNoArgs.total_of_arguments).to eql(0)
+      new_command = Class.new(SimpleImageEditor::Command)
+      expect(new_command.total_of_arguments).to eql(0)
     end
   end
 end
