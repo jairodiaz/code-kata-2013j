@@ -45,7 +45,7 @@ module SimpleImageEditor
     # The string used as the command prompt.
     COMMAND_PROMPT = '> '
 
-    # Read the command from standart input.
+    # Read the command from standard input.
     def read_command
       Kernel.print COMMAND_PROMPT
       Kernel.gets.chomp

@@ -25,6 +25,7 @@ module SimpleImageEditor
 
   private
 
+  # Display the image to standard output
   class DisplayImage
     def self.display(image)
       table = image.to_a.transpose
