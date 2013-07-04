@@ -2,11 +2,9 @@ require "image"
 require "command_runner"
 require "command_validations"
 require "command"
+require "image_commands"
 require "commands/null"
-require "commands/exit"
 require "commands/new_image"
-require "commands/clear"
-require "commands/show"
 require "commands/colour"
 require "commands/vertical"
 require "commands/horizontal"
@@ -20,11 +18,11 @@ module SimpleImageEditor
 
     # Initialize the application components.
     def initialize
-      @command_runner = CommandRunner.new
+      @command_runner = ImageCommands.new
 
-      commands = [ColourCommand, ClearCommand, DrawBorderCommand,
-                  ExitCommand, FillCommand, HorizontalCommand,
-                  NewImageCommand, ShowCommand, VerticalCommand]
+      commands = [ColourCommand, DrawBorderCommand,
+                  FillCommand, HorizontalCommand,
+                  NewImageCommand, VerticalCommand]
 
       commands.map { |command| @command_runner.add_command command }
 

@@ -4,8 +4,15 @@ module SimpleImageEditor
   class Command
     include SimpleImageEditor::CommandValidations
 
+    # Makes the class method transform accessible to instances.
+    # @param image The image to be processed.
+    # @param args The arguments required for the block to process the image.
+    # @returns[Image].
+    def transform(image, *args); self.class.transform(image, *args); end
+
     class << self
-    attr_reader :key
+      attr_reader :key
+      attr_accessor :block
 
       # Defines the keyboard key that identifies the command.
       # @param key The keyboard key.
@@ -23,6 +30,14 @@ module SimpleImageEditor
       # @returns[Integer].
       def total_of_arguments
         @number_of_arguments || 0
+      end
+
+      # Executes a predefined block that implements the command functionalty.
+      # @param image The image to be processed.
+      # @param args The arguments required for the block to process the image.
+      # @returns[Image].
+      def transform(image, *args)
+        block.call(image, args)
       end
     end
   end

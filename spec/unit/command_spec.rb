@@ -21,4 +21,18 @@ describe SimpleImageEditor::Command do
       expect(my_command.total_of_arguments).to eql(5)
     end
   end
+
+  describe "#block" do
+    it "should define a block" do
+      my_command.block = lambda { |image, args| true }
+      expect(my_command.block.call(:image, :args)).to be_true
+
+    end
+
+    it "should be called by transform" do
+        my_command.block = lambda { |image, args| true }
+        my_command.block.should_receive(:call).with(:image, [:arg0, :arg1])
+        my_command.transform(:image, :arg0, :arg1)
+    end
+  end
 end

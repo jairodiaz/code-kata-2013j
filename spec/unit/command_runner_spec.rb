@@ -10,8 +10,6 @@ describe SimpleImageEditor::CommandRunner do
       @command_runner.command ">"
       expect(@command_runner.commands.last.key).to eq(">")
     end
-
-    it ''
   end
 
   describe "#add_command" do
@@ -39,7 +37,11 @@ describe SimpleImageEditor::CommandRunner do
             end
           end
 
-          @command_runner.add_command command
+          @command_runner.command "#{COMMAND_ID}" do
+            true
+          end
+
+          #@command_runner.add_command command
           command_line = "#{COMMAND_ID}"
           expect(@command_runner.apply_on(image, command_line)).to eql(true)
         end
