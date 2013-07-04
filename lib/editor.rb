@@ -15,26 +15,32 @@ require "commands/draw_border"
 
 module SimpleImageEditor
 
+  # Edits images taking commands using a read-eval-loop.
   class Editor
+    class << self
 
-    def initialize
-      image = Image.new
-      loop do
-        image = Command.apply_on image, selected_command
-        break if image.nil?
+      # Start a read-eval-loop.
+      def read_eval_loop
+        image = Image.new
+        loop do
+          input_command = read_command
+          image = Command.apply_on image, input_command
+          break if image.nil?
+        end
+        Kernel.puts "Session terminated"
       end
-      Kernel.puts "Session terminated"
+
+      private
+
+      # The string used as the command prompt
+      COMMAND_PROMPT = '> '
+
+      # Read the command from standart input
+      def read_command
+        Kernel.print COMMAND_PROMPT
+        Kernel.gets.chomp
+      end
+
     end
-
-    private
-
-    COMMAND_PROMPT = '> '
-
-    def selected_command
-      Kernel.print COMMAND_PROMPT
-      Kernel.gets.chomp
-    end
-
   end
-
 end

@@ -10,14 +10,14 @@ describe SimpleImageEditor::Editor do
     it "displays '> ' when started" do
       Kernel.stub(:gets).and_return("X\n")
       Kernel.should_receive(:print).with("> ")
-      editor = SimpleImageEditor::Editor.new
+      editor = SimpleImageEditor::Editor.read_eval_loop
     end
   end
 
   describe "commands" do
     after(:each) do
       Kernel.should_receive(:puts).with("Session terminated").ordered
-      editor = SimpleImageEditor::Editor.new
+      editor = SimpleImageEditor::Editor.read_eval_loop
     end
 
     it "X - terminates session" do
