@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SimpleImageEditor::CommandRunner do
-  describe "#run" do
+  describe "#apply_on" do
     let(:image) { double('image') }
 
     context 'when the command line has a command id which is defined by a command subclass' do
