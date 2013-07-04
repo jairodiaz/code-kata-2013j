@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe SimpleImageEditor::CommandRunner do
+
+  describe "#command" do
+    it 'adds a command to the list' do
+      SimpleImageEditor::CommandRunner.command "T"
+      expect(SimpleImageEditor::CommandRunner.list_of_classes.last.id).to eq("T")
+    end
+  end
+
   describe "#apply_on" do
     let(:image) { double('image') }
 

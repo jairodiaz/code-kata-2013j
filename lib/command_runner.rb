@@ -12,6 +12,12 @@ module SimpleImageEditor
         command.transform(image, command_args)
       end
 
+      def command(identifier)
+        new_class = Class.new(SimpleImageEditor::Command)
+        new_class.define_key identifier
+        SimpleImageEditor::CommandRunner.list_of_classes << new_class
+      end
+
       private
 
       def command_for(command_id, command_args)
