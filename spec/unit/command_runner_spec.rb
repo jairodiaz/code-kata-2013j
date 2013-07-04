@@ -46,18 +46,9 @@ describe SimpleImageEditor::CommandRunner do
       context 'when there is not arguments' do
         it "should return true" do
           stub_const("COMMAND_ID", "-")
-          command = Class.new(SimpleImageEditor::Command) do
-            define_key COMMAND_ID
-            def transform(image=nil,args=nil)
-              true
-            end
-          end
-
           @command_runner.command "#{COMMAND_ID}" do
             true
           end
-
-          #@command_runner.add_command command
           command_line = "#{COMMAND_ID}"
           expect(@command_runner.apply_on(image, command_line)).to eql(true)
         end
