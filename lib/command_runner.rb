@@ -1,9 +1,10 @@
 module SimpleImageEditor
   class CommandRunner
-    attr_reader :list_of_classes
+    attr_reader :commands
+
 
     def initialize
-      @list_of_classes = []
+      @commands = []
     end
 
     def apply_on(image, command_line)
@@ -16,17 +17,17 @@ module SimpleImageEditor
     def command(identifier)
       new_class = Class.new(SimpleImageEditor::Command)
       new_class.define_key identifier
-      list_of_classes << new_class
+      commands << new_class
     end
 
     def add_command(command_class)
-      list_of_classes << command_class
+      commands << command_class
     end
 
     private
 
     def command_for(command_id, command_args)
-      command_class = @list_of_classes.find do |the_class|
+      command_class = @commands.find do |the_class|
         the_class.id == command_id
       end
       return command_class.new if validate_command_for(command_class, command_args)

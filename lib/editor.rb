@@ -18,7 +18,7 @@ module SimpleImageEditor
   # Edits images taking commands using a read-eval-loop.
   class Editor
 
-    # Initialize the application components
+    # Initialize the application components.
     def initialize
       @command_runner = CommandRunner.new
 
@@ -44,10 +44,10 @@ module SimpleImageEditor
       Kernel.puts "Session terminated"
     end
 
-    # The string used as the command prompt
+    # The string used as the command prompt.
     COMMAND_PROMPT = '> '
 
-    # Read the command from standart input
+    # Read the command from standart input.
     def read_command
       Kernel.print COMMAND_PROMPT
       Kernel.gets.chomp

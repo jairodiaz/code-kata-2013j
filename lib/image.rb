@@ -3,14 +3,11 @@ module SimpleImageEditor
     WHITE_COLOUR = 'O'
 
     attr_accessor :content
+    alias_method :to_a, :content
 
     def initialize(width=0, height=0)
       @width, @height = width, height
       clear
-    end
-
-    def to_a
-      content
     end
 
     def clear
@@ -62,11 +59,11 @@ module SimpleImageEditor
 
     def draw_border(x, y, border_colour)
       original_colour = @content[x-1][y-1]
-      temporary_colour = '.'
+      temp_colour = '.'
 
-      fill_region(x, y, temporary_colour, nil, border_colour)
+      fill_region(x, y, temp_colour, nil, border_colour)
 
-      @content.map { |column| column.map! { |colour| colour == temporary_colour ? original_colour : colour } }
+      @content.map { |column| column.map! { |colour| colour == temp_colour ? original_colour : colour } }
       self
     end
   end
