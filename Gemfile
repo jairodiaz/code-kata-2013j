@@ -8,4 +8,6 @@ group :development, :test do
   gem 'pry-nav'
   gem 'awesome_print'
   gem 'simplecov', :require => false
+  gem 'redcarpet'
+  gem 'yard'
 end
