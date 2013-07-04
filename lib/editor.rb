@@ -21,7 +21,7 @@ module SimpleImageEditor
       @command_runner = ImageCommands.new
 
       commands = [ColourCommand, DrawBorderCommand,
-                  FillCommand, HorizontalCommand,
+                  HorizontalCommand,
                   NewImageCommand, VerticalCommand]
 
       commands.map { |command| @command_runner.add_command command }

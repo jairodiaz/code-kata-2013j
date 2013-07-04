@@ -20,6 +20,10 @@ module SimpleImageEditor
         image
       end
 
+      command 'F', [Integer, Integer, String] do |image, args|
+        image.fill_region(args[0].to_i, args[1].to_i, args[2])
+      end
+
     end
   end
 

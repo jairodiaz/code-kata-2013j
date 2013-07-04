@@ -10,6 +10,17 @@ describe SimpleImageEditor::CommandRunner do
       @command_runner.command ">"
       expect(@command_runner.commands.last.key).to eq(">")
     end
+
+    it 'should add a block to the command' do
+      block = lambda { true }
+      @command_runner.command ">", &block
+      expect(@command_runner.commands.last.block).to eql(block)
+    end
+
+    it 'should add a number_of_arguments to the command' do
+      @command_runner.command ">", [Integer, String]
+      expect(@command_runner.commands.last.total_of_arguments).to eq(2)
+    end
   end
 
   describe "#add_command" do

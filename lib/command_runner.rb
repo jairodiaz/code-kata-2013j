@@ -23,9 +23,10 @@ module SimpleImageEditor
     # Adds a command to the list.
     # @param key The keyboard key that identifies the command.
     # @return [nil]
-    def command(key, &block)
+    def command(key, argument_types=[], &block)
       new_class = Class.new(SimpleImageEditor::Command)
       new_class.define_key key
+      new_class.number_of_arguments argument_types.size
       new_class.block = block
       commands << new_class
     end

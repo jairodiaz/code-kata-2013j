@@ -37,7 +37,7 @@ module SimpleImageEditor
       # @param args The arguments required for the block to process the image.
       # @returns[Image].
       def transform(image, *args)
-        block.call(image, args)
+        block.call(image, *args)
       end
     end
   end

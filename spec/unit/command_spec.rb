@@ -31,7 +31,7 @@ describe SimpleImageEditor::Command do
 
     it "should be called by transform" do
         my_command.block = lambda { |image, args| true }
-        my_command.block.should_receive(:call).with(:image, [:arg0, :arg1])
+        my_command.block.should_receive(:call).with(:image, :arg0, :arg1)
         my_command.transform(:image, :arg0, :arg1)
     end
   end
