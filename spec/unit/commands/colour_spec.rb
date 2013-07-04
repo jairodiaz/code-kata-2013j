@@ -5,7 +5,7 @@ describe SimpleImageEditor::ColourCommand do
 
   describe "#define_key" do
     it "should be 'L'" do
-      expect(SimpleImageEditor::ColourCommand.id).to eql('L')
+      expect(SimpleImageEditor::ColourCommand.key).to eql('L')
     end
   end
 

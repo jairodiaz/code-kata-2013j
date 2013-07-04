@@ -4,7 +4,7 @@ describe SimpleImageEditor::ShowCommand do
 
   describe "#define_key" do
     it "should be 'S'" do
-      expect(SimpleImageEditor::ShowCommand.id).to eql('S')
+      expect(SimpleImageEditor::ShowCommand.key).to eql('S')
     end
   end
 

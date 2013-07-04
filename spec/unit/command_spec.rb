@@ -6,7 +6,7 @@ describe SimpleImageEditor::Command do
   describe "#define_key" do
     it "has a command id" do
       my_command.define_key "N"
-      expect(my_command.id).to eql("N")
+      expect(my_command.key).to eql("N")
     end
   end
 

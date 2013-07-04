@@ -4,7 +4,7 @@ describe SimpleImageEditor::ExitCommand do
 
   describe "#define_key" do
     it "should be 'X'" do
-      expect(SimpleImageEditor::ExitCommand.id).to eql('X')
+      expect(SimpleImageEditor::ExitCommand.key).to eql('X')
     end
   end
 

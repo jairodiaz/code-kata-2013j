@@ -5,7 +5,7 @@ describe SimpleImageEditor::VerticalCommand do
 
   describe "#define_key" do
     it "should be 'V'" do
-      expect(SimpleImageEditor::VerticalCommand.id).to eql('V')
+      expect(SimpleImageEditor::VerticalCommand.key).to eql('V')
     end
   end
 

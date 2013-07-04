@@ -5,7 +5,7 @@ describe SimpleImageEditor::HorizontalCommand do
 
   describe "#define_key" do
     it "should be 'H'" do
-      expect(SimpleImageEditor::HorizontalCommand.id).to eql('H')
+      expect(SimpleImageEditor::HorizontalCommand.key).to eql('H')
     end
   end
 

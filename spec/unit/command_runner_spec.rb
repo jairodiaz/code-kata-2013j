@@ -8,7 +8,7 @@ describe SimpleImageEditor::CommandRunner do
   describe "#command" do
     it 'adds a command to the list' do
       @command_runner.command ">"
-      expect(@command_runner.commands.last.id).to eq(">")
+      expect(@command_runner.commands.last.key).to eq(">")
     end
   end
 
@@ -18,7 +18,7 @@ describe SimpleImageEditor::CommandRunner do
         define_key '<'
       end
       @command_runner.add_command command
-      expect(@command_runner.commands.last.id).to eq("<")
+      expect(@command_runner.commands.last.key).to eq("<")
     end
   end
 

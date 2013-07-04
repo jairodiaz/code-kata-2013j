@@ -5,7 +5,7 @@ describe SimpleImageEditor::ClearCommand do
 
   describe "#define_key" do
     it "should be 'C'" do
-      expect(SimpleImageEditor::ClearCommand.id).to eql('C')
+      expect(SimpleImageEditor::ClearCommand.key).to eql('C')
     end
   end
 

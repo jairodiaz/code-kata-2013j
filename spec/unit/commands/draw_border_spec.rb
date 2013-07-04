@@ -5,7 +5,7 @@ describe SimpleImageEditor::DrawBorderCommand do
 
   describe "#define_key" do
     it "should be 'B'" do
-      expect(SimpleImageEditor::DrawBorderCommand.id).to eql('B')
+      expect(SimpleImageEditor::DrawBorderCommand.key).to eql('B')
     end
   end
 
