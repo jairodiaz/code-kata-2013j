@@ -26,12 +26,14 @@ describe SimpleImageEditor::CommandRunner do
 
       context 'when there is not arguments' do
         COMMAND_ID = '-'
-        class MySimpleSubclassCommand < SimpleImageEditor::Command
+        command = Class.new(SimpleImageEditor::Command) do
           define_key COMMAND_ID
           def transform(image=nil,args=nil)
             true
           end
         end
+
+        SimpleImageEditor::CommandRunner.add_command command
 
         it "should return true" do
           command_line = "#{COMMAND_ID}"
@@ -41,13 +43,15 @@ describe SimpleImageEditor::CommandRunner do
 
       context 'when there is a specific number of arguments' do
         COMMAND_WITH_ARGS_ID = ":"
-        class MySubclassCommandWithTwoArgs < SimpleImageEditor::Command
+        command = Class.new(SimpleImageEditor::Command) do
           define_key COMMAND_WITH_ARGS_ID
           number_of_arguments 2
           def transform(image=nil,args=nil)
             true
           end
         end
+
+        SimpleImageEditor::CommandRunner.add_command command
 
         context 'when the command line has exactly the required number of arguments' do
           it "should return true" do
@@ -76,21 +80,21 @@ describe SimpleImageEditor::CommandRunner do
 
     context 'when method validates_format_for is present' do
       context "when the argument format is valid" do
-        COMMAND_WITH_VALIDATION_ID = ";"
-        class MySubclassCommandWithValidation < SimpleImageEditor::Command
-          define_key COMMAND_WITH_VALIDATION_ID
-          number_of_arguments 2
-          def transform(image=nil,args=nil)
-            true
-          end
-        end
-
         it "returns true" do
-          class MySubclassCommandWithValidation
+
+          COMMAND_WITH_VALIDATION_ID = ";"
+          command = Class.new(SimpleImageEditor::Command) do
+            define_key COMMAND_WITH_VALIDATION_ID
+            number_of_arguments 2
+            def transform(image=nil,args=nil)
+              true
+            end
             def validates_format_for(args=nil)
               true
             end
           end
+
+          SimpleImageEditor::CommandRunner.add_command command
           command_line = "#{COMMAND_WITH_VALIDATION_ID} 1 2"
           expect(SimpleImageEditor::CommandRunner.apply_on(image, command_line)).to equal(true)
         end
@@ -98,11 +102,21 @@ describe SimpleImageEditor::CommandRunner do
 
       context "when the argument format is invalid" do
         it "returns the image" do
-          class MySubclassCommandWithValidation
+
+
+          COMMAND_WITH_VALIDATION_ID = ","
+          command = Class.new(SimpleImageEditor::Command) do
+            define_key COMMAND_WITH_VALIDATION_ID
+            number_of_arguments 2
+            def transform(image=nil,args=nil)
+              true
+            end
             def validates_format_for(args=nil)
               false
             end
           end
+
+          SimpleImageEditor::CommandRunner.add_command command
           command_line = "#{COMMAND_WITH_VALIDATION_ID} 0 0"
           expect(SimpleImageEditor::CommandRunner.apply_on(image, command_line)).to equal(image)
         end
