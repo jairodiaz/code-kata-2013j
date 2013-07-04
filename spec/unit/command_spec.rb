@@ -4,7 +4,7 @@ describe SimpleImageEditor::Command do
   let(:my_command) { Class.new(SimpleImageEditor::Command) }
 
   describe "#define_key" do
-    it "has a command id" do
+    it "has a command key" do
       my_command.define_key "N"
       expect(my_command.key).to eql("N")
     end

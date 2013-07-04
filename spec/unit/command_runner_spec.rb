@@ -25,7 +25,7 @@ describe SimpleImageEditor::CommandRunner do
   describe "#apply_on" do
     let(:image) { double('image') }
 
-    context 'when the command line has a command id which is defined by a command subclass' do
+    context 'when the command is defined and requested on the command line' do
 
       context 'when there is not arguments' do
         it "should return true" do
@@ -48,7 +48,7 @@ describe SimpleImageEditor::CommandRunner do
         context 'when the command line has exactly the required number of arguments' do
           it "should return true" do
 
-            COMMAND_WITH_ARGS_ID = ":"
+            stub_const("COMMAND_WITH_ARGS_ID", ":")
             command = Class.new(SimpleImageEditor::Command) do
               define_key COMMAND_WITH_ARGS_ID
               number_of_arguments 2
@@ -66,7 +66,7 @@ describe SimpleImageEditor::CommandRunner do
         context 'when the command line DOES NOT have the required number of arguments' do
           it "should return the image" do
 
-            COMMAND_WITH_ARGS_ID = ":"
+            stub_const("COMMAND_WITH_ARGS_ID", "]")
             command = Class.new(SimpleImageEditor::Command) do
               define_key COMMAND_WITH_ARGS_ID
               number_of_arguments 2
@@ -84,7 +84,7 @@ describe SimpleImageEditor::CommandRunner do
 
     end
 
-    context 'when the command line has a command id that it is not defined by a command subclass' do
+    context 'when the command is not defined' do
       it "should return the image" do
         define_invalid_key = "."
         command_line = "#{define_invalid_key} some other text"
