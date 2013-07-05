@@ -60,4 +60,22 @@ describe SimpleImageEditor::Image do
       expect(image.horizontal(x1, x2, y, c).to_a).to eql(image_with_horizontal)
     end
   end
+
+  describe "delegated methods" do
+    before do
+      @image = SimpleImageEditor::Image.new(3, 3)
+      @flood_fill = double('flood_fill')
+      @image.flood_fill = @flood_fill
+    end
+
+    it "should delegate fill_region" do
+      @flood_fill.should_receive(:fill_region)
+      @image.fill_region(1,1,"C")
+    end
+
+    it "should delegate draw_border" do
+      @flood_fill.should_receive(:draw_border)
+      @image.draw_border(1,1,"C")
+    end
+  end
 end

@@ -1,10 +1,10 @@
+require "image_floodfill"
+require "image"
 require "command_Validatable"
 require "command"
 require "null_command"
 require "command_set"
 require "image_commands"
-require "image_floodfill"
-require "image"
 
 
 module SimpleImageEditor

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe SimpleImageEditor::FloodFill do
-
   describe "#fill_region" do
     context "when the region expands in all directions" do
       it "should fill in the region with colour C" do
@@ -15,8 +14,9 @@ describe SimpleImageEditor::FloodFill do
                         ["C", "C", "C"],
                         ["O", "C", "O"]]
 
+        flood_fill = SimpleImageEditor::FloodFill.new(initial_image)
         x, y, c = 2, 2, "C"
-        expect(initial_image.fill_region(x, y, c).to_a).to eql(filled_image)
+        expect(flood_fill.fill_region(x, y, c).to_a).to eql(filled_image)
       end
     end
 
@@ -32,8 +32,9 @@ describe SimpleImageEditor::FloodFill do
                         ["L", "L", "L"],
                         ["O", "L", "O"]]
 
+        flood_fill = SimpleImageEditor::FloodFill.new(initial_image)
         x, y, c = 1, 1, "C"
-        expect(initial_image.fill_region(x, y, c).to_a).to eql(filled_image)
+        expect(flood_fill.fill_region(x, y, c).to_a).to eql(filled_image)
       end
     end
   end
@@ -52,8 +53,9 @@ describe SimpleImageEditor::FloodFill do
                            ["L", "L", "L"],
                            ["O", "L", "O"]]
 
+        flood_fill = SimpleImageEditor::FloodFill.new(initial_image)
         x, y, c = 1, 1, "C"
-        expect(initial_image.draw_border(x, y, c).to_a).to eql(bordered_image)
+        expect(flood_fill.draw_border(x, y, c).to_a).to eql(bordered_image)
       end
     end
 
@@ -71,8 +73,9 @@ describe SimpleImageEditor::FloodFill do
                           ["X", "A", "B", "O"],
                           ["O", "X", "O", "O"]]
 
+        flood_fill = SimpleImageEditor::FloodFill.new(initial_image)
         x, y, c = 2, 2, "X"
-        expect(initial_image.draw_border(x, y, c).to_a).to eql(bordered_image)
+        expect(flood_fill .draw_border(x, y, c).to_a).to eql(bordered_image)
       end
     end
 
@@ -95,8 +98,10 @@ describe SimpleImageEditor::FloodFill do
                                  ["O", "O", "M", "P", "M", "O", "O"],
                                  ["O", "O", "O", "M", "O", "O", "O"],
                                  ["O", "O", "O", "O", "O", "O", "O"]]
+
+        flood_fill = SimpleImageEditor::FloodFill.new(initial_image)
         x, y, c = 4, 4, "M"
-        expect(initial_image.draw_border(x, y, c).to_a).to eql(image_with_border)
+        expect(flood_fill .draw_border(x, y, c).to_a).to eql(image_with_border)
       end
     end
   end
