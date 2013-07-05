@@ -2,9 +2,13 @@ module SimpleImageEditor
 
   # Implements the floodfill algorithm to fill up an image
   class FloodFill
-    def initialize(image)
+
+    # Initializes the implementation with the image to process.
+    def initialize(image, background_color)
       @image = image
+      @background_color = background_color
     end
+
     # Fill the region R with the colour C. R is defined as: Pixel (X,Y) belongs to R.
     # Any other pixel which is the same colour as (X,Y) and shares a common side with any
     # pixel in R also belongs to this region.
@@ -56,7 +60,7 @@ module SimpleImageEditor
     # Colours the border of a region.
     def colour_border(x, y, new_colour, border_colour)
       @image.content[x][y] = border_colour if (@image.content[x][y] != new_colour) &&
-                                        (@image.content[x][y] == SimpleImageEditor::Image::WHITE_COLOUR)
+                                              (@image.content[x][y] == @background_color)
     end
 
   end

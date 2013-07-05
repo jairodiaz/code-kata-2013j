@@ -15,7 +15,7 @@ module SimpleImageEditor
     # Create a new M x N image with all pixels coloured white
     def initialize(width=0, height=0)
       @width, @height = width, height
-      @flood_fill = SimpleImageEditor::FloodFill.new(self)
+      @flood_fill = SimpleImageEditor::FloodFill.new(self, WHITE_COLOUR)
       clear
     end
 

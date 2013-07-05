@@ -14,7 +14,7 @@ describe SimpleImageEditor::FloodFill do
                         ["C", "C", "C"],
                         ["O", "C", "O"]]
 
-        flood_fill = SimpleImageEditor::FloodFill.new(initial_image)
+        flood_fill = SimpleImageEditor::FloodFill.new(initial_image, "O")
         x, y, c = 2, 2, "C"
         expect(flood_fill.fill_region(x, y, c).to_a).to eql(filled_image)
       end
@@ -32,7 +32,7 @@ describe SimpleImageEditor::FloodFill do
                         ["L", "L", "L"],
                         ["O", "L", "O"]]
 
-        flood_fill = SimpleImageEditor::FloodFill.new(initial_image)
+        flood_fill = SimpleImageEditor::FloodFill.new(initial_image, "O")
         x, y, c = 1, 1, "C"
         expect(flood_fill.fill_region(x, y, c).to_a).to eql(filled_image)
       end
@@ -53,7 +53,7 @@ describe SimpleImageEditor::FloodFill do
                            ["L", "L", "L"],
                            ["O", "L", "O"]]
 
-        flood_fill = SimpleImageEditor::FloodFill.new(initial_image)
+        flood_fill = SimpleImageEditor::FloodFill.new(initial_image, "O")
         x, y, c = 1, 1, "C"
         expect(flood_fill.draw_border(x, y, c).to_a).to eql(bordered_image)
       end
@@ -73,7 +73,7 @@ describe SimpleImageEditor::FloodFill do
                           ["X", "A", "B", "O"],
                           ["O", "X", "O", "O"]]
 
-        flood_fill = SimpleImageEditor::FloodFill.new(initial_image)
+        flood_fill = SimpleImageEditor::FloodFill.new(initial_image, "O")
         x, y, c = 2, 2, "X"
         expect(flood_fill .draw_border(x, y, c).to_a).to eql(bordered_image)
       end
@@ -99,7 +99,7 @@ describe SimpleImageEditor::FloodFill do
                                  ["O", "O", "O", "M", "O", "O", "O"],
                                  ["O", "O", "O", "O", "O", "O", "O"]]
 
-        flood_fill = SimpleImageEditor::FloodFill.new(initial_image)
+        flood_fill = SimpleImageEditor::FloodFill.new(initial_image, "O")
         x, y, c = 4, 4, "M"
         expect(flood_fill .draw_border(x, y, c).to_a).to eql(image_with_border)
       end
