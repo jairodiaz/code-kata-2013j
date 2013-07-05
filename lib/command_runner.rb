@@ -9,6 +9,18 @@ module SimpleImageEditor
       @commands = []
     end
 
+    # Adds a command to the list.
+    # @param key The keyboard key that identifies the command.
+    # @return [nil]
+    def add_command(key, argument_types=[], &block)
+      command = SimpleImageEditor::Command.new
+      command.key = key
+      command.number_of_arguments = argument_types.size
+      command.argument_types = argument_types
+      command.block = block
+      commands << command
+    end
+
     # Identifies a command in the command line and process the command passing the image.
     # @param image The image object.
     # @param command_line The command line string.
@@ -20,18 +32,6 @@ module SimpleImageEditor
       command.transform(image, command_args)
     end
 
-    # Adds a command to the list.
-    # @param key The keyboard key that identifies the command.
-    # @return [nil]
-    def add_command(key, argument_types=[], &block)
-      new_class = Class.new(SimpleImageEditor::Command)
-      new_class.key = key
-      new_class.number_of_arguments = argument_types.size
-      new_class.block = block
-      new_class.argument_types = argument_types
-      commands << new_class
-    end
-
     private
 
     # Finds a command given a key and arguments.
@@ -39,30 +39,28 @@ module SimpleImageEditor
     # @param command_args The arguments passed to the command.
     # @return [Command] Returns a Command if the key is found and the arguments are valid. Returns a NullCommand otherwise.
     def command_for(key, command_args)
-      command_class = @commands.find do |the_class|
-        the_class.key == key
-      end
-      return command_class if validate_command_for(command_class, command_args)
+      command = @commands.find { |command_member| command_member.key == key }
+      return command if validate_command_for(command, command_args)
       NullCommand
     end
 
     # Validates that the command exists and the number of arguments is correct.
-    # @param command_class The class implementing the command.
+    # @param command The object implementing the command.
     # @param command_args The arguments passed to the command.
     # @return [boolean] True if the params are correct. False otherwise.
-    def validate_command_for(command_class, command_args)
-      command_class &&
-      (command_args.size == command_class.number_of_arguments) &&
-      validate_arguments_for(command_class, command_args)
+    def validate_command_for(command, command_args)
+      command &&
+      (command_args.size == command.number_of_arguments) &&
+      validate_arguments_for(command, command_args)
     end
 
     # Validates the format of the arguments if a validation block
     # has been defined for the command.
-    # @param command_class The class implementing the command.
+    # @param command The object implementing the command.
     # @param command_args The arguments passed to the command.
     # @return [boolean] True if the params are valid. False otherwise.
-    def validate_arguments_for(command_class, command_args)
-      command_class.validates_format_for(command_args)
+    def validate_arguments_for(command, command_args)
+      command.validates_format_for(command_args)
     end
 
   end

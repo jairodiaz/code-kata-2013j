@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SimpleImageEditor::CommandValidations do
 
  class TestClass; end;
- let(:test_class) { TestClass.new.extend SimpleImageEditor::CommandValidations }
+ let(:test_class) { TestClass.extend SimpleImageEditor::CommandValidations }
 
  describe "#validates_numericality_of" do
     context "when value is between 1 and 250" do
@@ -40,7 +40,7 @@ describe SimpleImageEditor::CommandValidations do
   end
 
  describe "#validates_format_for" do
-    let (:new_command) { Class.new(SimpleImageEditor::Command) }
+    let (:new_command) { SimpleImageEditor::Command.new }
     context "when argument match the expected type" do
       it "should be true for an Integer argument" do
         new_command.argument_types = [Integer]

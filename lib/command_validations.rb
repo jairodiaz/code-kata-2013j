@@ -5,8 +5,7 @@ module SimpleImageEditor
     # @return [boolean].
     def validates_numericality_of(*args)
       args = args.map(&:to_i)
-      args.each { |arg| return false if arg < 1 || arg > 250 }
-      true
+      args.all? { |arg| arg >= 1 and arg <= 250 }
     end
 
     # Returns true if the argument is a valid color (a capital letter).

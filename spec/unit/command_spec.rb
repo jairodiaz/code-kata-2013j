@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SimpleImageEditor::Command do
-  let(:my_command) { Class.new(SimpleImageEditor::Command) }
+  let(:my_command) { SimpleImageEditor::Command.new }
 
   describe "#key" do
     it "should have a key" do
@@ -33,8 +33,7 @@ describe SimpleImageEditor::Command do
 
   describe "#argument_types" do
     it "should respond to argument_types" do
-      new_command = Class.new(SimpleImageEditor::Command)
-      expect(new_command).to respond_to :argument_types
+      expect(my_command).to respond_to :argument_types
     end
   end
 
