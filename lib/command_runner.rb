@@ -25,8 +25,8 @@ module SimpleImageEditor
     # @return [nil]
     def add_command(key, argument_types=[], &block)
       new_class = Class.new(SimpleImageEditor::Command)
-      new_class.define_key key
-      new_class.number_of_arguments argument_types.size
+      new_class.key = key
+      new_class.number_of_arguments = argument_types.size
       new_class.block = block
       new_class.argument_types = argument_types
       commands << new_class
@@ -52,7 +52,7 @@ module SimpleImageEditor
     # @return [boolean] True if the params are correct. False otherwise.
     def validate_command_for(command_class, command_args)
       command_class &&
-      (command_args.size == command_class.total_of_arguments) &&
+      (command_args.size == command_class.number_of_arguments) &&
       validate_arguments_for(command_class, command_args)
     end
 

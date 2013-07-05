@@ -34,7 +34,7 @@ describe SimpleImageEditor::ImageCommands do
 
     describe "When calling the command 'fill'" do
       it "should expect 3 arguments" do
-       expect(SimpleImageEditor::ImageCommands.new.commands[3].total_of_arguments).to eql(3)
+       expect(SimpleImageEditor::ImageCommands.new.commands[3].number_of_arguments).to eql(3)
       end
 
       it "should call to fill region on the image" do
@@ -60,7 +60,7 @@ describe SimpleImageEditor::ImageCommands do
 
     describe "When calling the command 'draw border'" do
       it "should expect 3 arguments" do
-       expect(SimpleImageEditor::ImageCommands.new.commands[4].total_of_arguments).to eql(3)
+       expect(SimpleImageEditor::ImageCommands.new.commands[4].number_of_arguments).to eql(3)
       end
 
       it "should call to draw a border around a region" do
@@ -86,7 +86,7 @@ describe SimpleImageEditor::ImageCommands do
 
     describe "When calling the command 'horizontal line'" do
       it "should expect 4 arguments" do
-       expect(SimpleImageEditor::ImageCommands.new.commands[5].total_of_arguments).to eql(4)
+       expect(SimpleImageEditor::ImageCommands.new.commands[5].number_of_arguments).to eql(4)
       end
 
       it "should call to draw a horizontal line" do
@@ -112,7 +112,7 @@ describe SimpleImageEditor::ImageCommands do
 
    describe "When calling the command 'vertical line'" do
       it "should expect 4 arguments" do
-       expect(SimpleImageEditor::ImageCommands.new.commands[6].total_of_arguments).to eql(4)
+       expect(SimpleImageEditor::ImageCommands.new.commands[6].number_of_arguments).to eql(4)
       end
 
       it "should call to draw a vertical line" do
@@ -138,7 +138,7 @@ describe SimpleImageEditor::ImageCommands do
 
    describe "When calling the command 'new image'" do
       it "should expect 2 arguments" do
-       expect(SimpleImageEditor::ImageCommands.new.commands[7].total_of_arguments).to eql(2)
+       expect(SimpleImageEditor::ImageCommands.new.commands[7].number_of_arguments).to eql(2)
       end
 
       it "should call to create new image" do
@@ -164,7 +164,7 @@ describe SimpleImageEditor::ImageCommands do
 
     describe "When calling the command 'colour'" do
       it "should expect 3 arguments" do
-       expect(SimpleImageEditor::ImageCommands.new.commands[8].total_of_arguments).to eql(3)
+       expect(SimpleImageEditor::ImageCommands.new.commands[8].number_of_arguments).to eql(3)
       end
 
       it "should call to colour on the image" do

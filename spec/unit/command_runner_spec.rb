@@ -19,7 +19,7 @@ describe SimpleImageEditor::CommandRunner do
 
     it 'should add a number_of_arguments to the command' do
       @command_runner.add_command "Q", [Integer, String]
-      expect(@command_runner.commands.last.total_of_arguments).to eq(2)
+      expect(@command_runner.commands.last.number_of_arguments).to eq(2)
     end
 
     it 'should add argument_types to the command' do
