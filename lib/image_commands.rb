@@ -3,7 +3,7 @@ module SimpleImageEditor
   # Holds a group of commands to manipulate images.
   class ImageCommands < CommandRunner
 
-    # Creates the image commands
+    # Creates the image commands.
     def initialize
       super
 
@@ -48,7 +48,7 @@ module SimpleImageEditor
 
   private
 
-  # Display the image to standard output
+  # Display the image to standard output.
   class DisplayImage
     def self.display(image)
       table = image.to_a.transpose

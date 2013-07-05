@@ -1,9 +1,9 @@
 require "image"
-require "command_runner"
 require "command_validations"
 require "command"
-require "image_commands"
 require "null_command"
+require "command_runner"
+require "image_commands"
 
 
 module SimpleImageEditor
@@ -13,7 +13,7 @@ module SimpleImageEditor
 
     # Initialize the application components.
     def initialize
-      @command_runner = ImageCommands.new
+      @image_commands = ImageCommands.new
       @image = Image.new
       read_eval_loop
     end
@@ -24,7 +24,7 @@ module SimpleImageEditor
     def read_eval_loop
       loop do
         selected_command = read_command
-        @image = @command_runner.apply_on @image, selected_command
+        @image = @image_commands.apply_on @image, selected_command
         break if @image.nil?
       end
       Kernel.puts "Session terminated"
