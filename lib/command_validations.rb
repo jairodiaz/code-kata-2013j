@@ -1,11 +1,10 @@
 module SimpleImageEditor
   module CommandValidations
-    # Returns true if all the arguments are numbers between 1 and 250.
-    # @param args The arguments to be checked.
+    # Returns true if the arguments is a numbers between 1 and 250.
+    # @param args The argument to be checked.
     # @return [boolean].
-    def validates_numericality_of(*args)
-      args = args.map(&:to_i)
-      args.all? { |arg| arg >= 1 and arg <= 250 }
+    def validates_numericality_of(arg)
+      arg.to_i >= 1 and arg.to_i <= 250
     end
 
     # Returns true if the argument is a valid color (a capital letter).
@@ -15,7 +14,7 @@ module SimpleImageEditor
       !! (arg =~ /[A-Z]/)
     end
 
-    # Returns true if all the arguments are of valid type.
+    # Returns true if all the arguments are of valid type or there is no argument_type information.
     # @param args The arguments to be checked.
     # @return [boolean].
     def validates_format_for(args)

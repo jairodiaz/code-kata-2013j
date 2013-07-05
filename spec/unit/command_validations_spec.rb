@@ -11,16 +11,14 @@ describe SimpleImageEditor::CommandValidations do
         (1..250).each { |x| expect(test_class.validates_numericality_of(x)).to be_true }
       end
     end
-
-    context "when there are multiple arguments with correct values" do
-      it "should return true" do
-        expect(test_class.validates_numericality_of(3, 4)).to be_true
+    context "when value is 0" do
+      it "should return false" do
+        expect(test_class.validates_numericality_of(0)).to be_false
       end
     end
-
-    context "when there is an incorrec value" do
+    context "when value is 251" do
       it "should return false" do
-        expect(test_class.validates_numericality_of(3, 0)).to be_false
+        expect(test_class.validates_numericality_of(251)).to be_false
       end
     end
   end
