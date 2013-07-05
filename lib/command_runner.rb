@@ -50,8 +50,8 @@ module SimpleImageEditor
       command_class = @commands.find do |the_class|
         the_class.key == key
       end
-      return command_class.new if validate_command_for(command_class, command_args)
-      NullCommand.new
+      return command_class if validate_command_for(command_class, command_args)
+      NullCommand
     end
 
     # Validates that the command exists and the number of arguments is correct.

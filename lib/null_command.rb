@@ -1,6 +1,6 @@
 module SimpleImageEditor
   class NullCommand
-    def transform(image=nil, args=nil)
+    def self.transform(image=nil, args=nil)
       image
     end
   end

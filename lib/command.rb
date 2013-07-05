@@ -4,12 +4,6 @@ module SimpleImageEditor
   class Command
     extend SimpleImageEditor::CommandValidations
 
-    # Makes the class method transform accessible to instances.
-    # @param image The image to be processed.
-    # @param args The arguments required for the block to process the image.
-    # @returns[Image].
-    def transform(image, *args); self.class.transform(image, *args); end
-
     class << self
       attr_reader :key
       attr_accessor :block, :argument_types

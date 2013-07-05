@@ -58,18 +58,11 @@ describe SimpleImageEditor::CommandRunner do
 
         context 'when the command line has exactly the required number of arguments' do
           it "should return true" do
-
             stub_const("COMMAND_WITH_ARGS_ID", ":")
-            command = Class.new(SimpleImageEditor::Command) do
-              define_key COMMAND_WITH_ARGS_ID
-              number_of_arguments 2
-              def transform(image=nil,args=nil)
-                true
-              end
+            @command_runner.command COMMAND_WITH_ARGS_ID, [Integer, Integer] do
+              true
             end
-
-            @command_runner.add_command command
-            command_line = "#{COMMAND_WITH_ARGS_ID} arg1 arg2"
+            command_line = "#{COMMAND_WITH_ARGS_ID} 1 1"
             expect(@command_runner.apply_on(image, command_line)).to eql(true)
           end
         end
@@ -106,20 +99,14 @@ describe SimpleImageEditor::CommandRunner do
     context 'when method validates_format_for is present' do
       context "when the argument format is valid" do
         it "should return true" do
-          stub_const("COMMAND_WITH_VALIDATION_ID", ";")
-          command = Class.new(SimpleImageEditor::Command) do
-            define_key COMMAND_WITH_VALIDATION_ID
-            number_of_arguments 2
-            def transform(image=nil,args=nil)
-              true
-            end
-            def validates_format_for(args=nil)
-              true
-            end
+         stub_const("COMMAND_WITH_VALIDATION_ID", ",")
+
+          @command_runner.command COMMAND_WITH_VALIDATION_ID, [Integer, Integer] do
+            true
           end
 
-          @command_runner.add_command command
           command_line = "#{COMMAND_WITH_VALIDATION_ID} 1 2"
+
           expect(@command_runner.apply_on(image, command_line)).to equal(true)
         end
       end
