@@ -2,10 +2,13 @@ require 'spec_helper'
 
 describe SimpleImageEditor::CommandValidatable do
 
- class TestClass; end;
- let(:test_class) { TestClass.extend SimpleImageEditor::CommandValidatable }
+  let(:test_class) do
+    Class.new do
+      extend SimpleImageEditor::CommandValidatable
+    end
+  end
 
- describe "#validates_numericality_of" do
+  describe "#validates_numericality_of" do
     context "when value is between 1 and 250" do
       it "should return true" do
         (1..250).each { |x| expect(test_class.validates_numericality_of(x)).to be_true }
@@ -38,7 +41,13 @@ describe SimpleImageEditor::CommandValidatable do
   end
 
  describe "#validates_format_for" do
-    let (:new_command) { SimpleImageEditor::Command.new }
+    let (:new_command) do
+      Class.new do
+        include SimpleImageEditor::CommandValidatable
+        attr_accessor :argument_types
+      end.new
+    end
+
     context "when argument match the expected type" do
       it "should be true for an Integer argument" do
         new_command.argument_types = [Integer]
