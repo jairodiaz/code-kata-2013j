@@ -4,11 +4,7 @@ require "command_validations"
 require "command"
 require "image_commands"
 require "null_command"
-require "commands/new_image"
-require "commands/colour"
-require "commands/vertical"
-require "commands/horizontal"
-require "commands/draw_border"
+
 
 module SimpleImageEditor
 
