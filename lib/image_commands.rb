@@ -7,40 +7,40 @@ module SimpleImageEditor
     def initialize
       super
 
-      command 'C' do |image|
+      add_command 'C' do |image|
         image.clear
       end
 
-      command 'X' do |image|
+      add_command 'X' do |image|
         nil
       end
 
-      command 'S' do |image|
+      add_command 'S' do |image|
         DisplayImage.display(image)
         image
       end
 
-      command 'F', [Integer, Integer, String] do |image, args|
+      add_command 'F', [Integer, Integer, String] do |image, args|
         image.fill_region(args[0].to_i, args[1].to_i, args[2])
       end
 
-      command 'B' , [Integer, Integer, String] do |image, args|
+      add_command 'B' , [Integer, Integer, String] do |image, args|
         image.draw_border(args[0].to_i, args[1].to_i, args[2])
       end
 
-      command 'H', [Integer, Integer, Integer, String] do |image, args|
+      add_command 'H', [Integer, Integer, Integer, String] do |image, args|
         image.horizontal(args[0].to_i, args[1].to_i, args[2].to_i, args[3])
       end
 
-      command 'V', [Integer, Integer, Integer, String] do |image, args|
+      add_command 'V', [Integer, Integer, Integer, String] do |image, args|
         image.vertical(args[0].to_i, args[1].to_i, args[2].to_i, args[3])
       end
 
-      command 'I', [Integer, Integer] do |image, args|
+      add_command 'I', [Integer, Integer] do |image, args|
         SimpleImageEditor::Image.new(args[0].to_i, args[1].to_i)
       end
 
-      command 'L', [Integer, Integer, String] do |image, args|
+      add_command 'L', [Integer, Integer, String] do |image, args|
         image.colour(args[0].to_i, args[1].to_i, args[2])
       end
     end

@@ -30,12 +30,12 @@ describe SimpleImageEditor::Editor do
       Kernel.should_receive(:puts).with("=>\n\n").ordered
     end
 
-    it "should creates a new image with I" do
+    it "should create a new image with I" do
       Kernel.stub(:gets).and_return("I 3 3\n","S\n", "X\n")
       Kernel.should_receive(:puts).with("=>\nOOO\nOOO\nOOO\n\n").ordered
     end
 
-    it "should colours a pixel with L" do
+    it "should colour a pixel with L" do
       Kernel.stub(:gets).and_return("I 3 3\n", "L 1 1 X\n", "S\n", "X\n")
       Kernel.should_receive(:puts).with("=>\nXOO\nOOO\nOOO\n\n").ordered
     end
