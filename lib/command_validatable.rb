@@ -1,5 +1,8 @@
 module SimpleImageEditor
+
+  #Implements validation methods for a command.
   module CommandValidatable
+
     # Returns true if the arguments is a numbers between 1 and 250.
     # @param args The argument to be checked.
     # @return [boolean].
