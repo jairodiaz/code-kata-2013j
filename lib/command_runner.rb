@@ -70,8 +70,7 @@ module SimpleImageEditor
     # @param command_args The arguments passed to the command.
     # @return [boolean] True if the params are valid. False otherwise.
     def validate_arguments_for(command_class, command_args)
-      return true unless command_class.method_defined? :validates_format_for
-      command_class.new.validates_format_for(command_args)
+      command_class.validates_format_for(command_args)
     end
 
   end

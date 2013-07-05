@@ -2,7 +2,7 @@ module SimpleImageEditor
 
   # Represents a command.
   class Command
-    include SimpleImageEditor::CommandValidations
+    extend SimpleImageEditor::CommandValidations
 
     # Makes the class method transform accessible to instances.
     # @param image The image to be processed.
@@ -39,20 +39,7 @@ module SimpleImageEditor
       def transform(image, *args)
         block.call(image, *args)
       end
-    end
 
-    # Returns true if all the arguments are of valid type.
-    # @param args The arguments to be checked.
-    # @return [boolean].
-    def validates_format_for(args)
-      return true if self.class.argument_types.nil?
-      args.each_with_index do |arg, index|
-        result = self.class.argument_types[index] == Integer ? validates_numericality_of(arg)
-                                                             : validates_color_for(arg)
-        return false unless result
-      end
-      true
     end
-
   end
 end

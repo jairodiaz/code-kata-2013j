@@ -45,14 +45,14 @@ describe SimpleImageEditor::ImageCommands do
       describe "#validates_format_for" do
         context "when the arguments are two numbers and a character" do
           it "should return true " do
-            expect(SimpleImageEditor::ImageCommands.new.commands[3].new.validates_format_for ["1", "1", "C"]).to be_true
+            expect(SimpleImageEditor::ImageCommands.new.commands[3].validates_format_for ["1", "1", "C"]).to be_true
           end
         end
 
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
-            expect(SimpleImageEditor::ImageCommands.new.commands[3].new.validates_format_for ["C", "3", "C"]).to be_false
-            expect(SimpleImageEditor::ImageCommands.new.commands[3].new.validates_format_for ["1", "3", "0"]).to be_false
+            expect(SimpleImageEditor::ImageCommands.new.commands[3].validates_format_for ["C", "3", "C"]).to be_false
+            expect(SimpleImageEditor::ImageCommands.new.commands[3].validates_format_for ["1", "3", "0"]).to be_false
           end
         end
       end
@@ -71,14 +71,14 @@ describe SimpleImageEditor::ImageCommands do
       describe "#validates_format_for" do
         context "when the arguments are two numbers and a character" do
           it "should return true " do
-            expect(SimpleImageEditor::ImageCommands.new.commands[4].new.validates_format_for ["1", "1", "C"]).to be_true
+            expect(SimpleImageEditor::ImageCommands.new.commands[4].validates_format_for ["1", "1", "C"]).to be_true
           end
         end
 
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
-            expect(SimpleImageEditor::ImageCommands.new.commands[4].new.validates_format_for ["C", "3", "C"]).to be_false
-            expect(SimpleImageEditor::ImageCommands.new.commands[4].new.validates_format_for ["1", "3", "0"]).to be_false
+            expect(SimpleImageEditor::ImageCommands.new.commands[4].validates_format_for ["C", "3", "C"]).to be_false
+            expect(SimpleImageEditor::ImageCommands.new.commands[4].validates_format_for ["1", "3", "0"]).to be_false
           end
         end
       end
@@ -97,14 +97,14 @@ describe SimpleImageEditor::ImageCommands do
       describe "#validates_format_for" do
         context "when the arguments are three numbers and a character" do
           it "should return true " do
-            expect(SimpleImageEditor::ImageCommands.new.commands[5].new.validates_format_for ["1", "1", "1", "C"]).to be_true
+            expect(SimpleImageEditor::ImageCommands.new.commands[5].validates_format_for ["1", "1", "1", "C"]).to be_true
           end
         end
 
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
-            expect(SimpleImageEditor::ImageCommands.new.commands[5].new.validates_format_for ["C", "3", "1", "C"]).to be_false
-            expect(SimpleImageEditor::ImageCommands.new.commands[5].new.validates_format_for ["1", "3", "1", "0"]).to be_false
+            expect(SimpleImageEditor::ImageCommands.new.commands[5].validates_format_for ["C", "3", "1", "C"]).to be_false
+            expect(SimpleImageEditor::ImageCommands.new.commands[5].validates_format_for ["1", "3", "1", "0"]).to be_false
           end
         end
       end
@@ -123,14 +123,14 @@ describe SimpleImageEditor::ImageCommands do
       describe "#validates_format_for" do
         context "when the arguments are three numbers and a character" do
           it "should return true " do
-            expect(SimpleImageEditor::ImageCommands.new.commands[6].new.validates_format_for ["1", "1", "1", "C"]).to be_true
+            expect(SimpleImageEditor::ImageCommands.new.commands[6].validates_format_for ["1", "1", "1", "C"]).to be_true
           end
         end
 
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
-            expect(SimpleImageEditor::ImageCommands.new.commands[6].new.validates_format_for ["C", "3", "1", "C"]).to be_false
-            expect(SimpleImageEditor::ImageCommands.new.commands[6].new.validates_format_for ["1", "3", "1", "0"]).to be_false
+            expect(SimpleImageEditor::ImageCommands.new.commands[6].validates_format_for ["C", "3", "1", "C"]).to be_false
+            expect(SimpleImageEditor::ImageCommands.new.commands[6].validates_format_for ["1", "3", "1", "0"]).to be_false
           end
         end
       end
@@ -149,14 +149,14 @@ describe SimpleImageEditor::ImageCommands do
       describe "#validates_format_for" do
         context "when both arguments are numbers between 1 and 250" do
           it "should return true " do
-            expect(SimpleImageEditor::ImageCommands.new.commands[7].new.validates_format_for ["5", "3"]).to be_true
+            expect(SimpleImageEditor::ImageCommands.new.commands[7].validates_format_for ["5", "3"]).to be_true
           end
         end
 
         context "when one argument is NOT between 1 and 250" do
           it "should return false" do
-            expect(SimpleImageEditor::ImageCommands.new.commands[7].new.validates_format_for ["0", "3"]).to be_false
-            expect(SimpleImageEditor::ImageCommands.new.commands[7].new.validates_format_for ["251", "3"]).to be_false
+            expect(SimpleImageEditor::ImageCommands.new.commands[7].validates_format_for ["0", "3"]).to be_false
+            expect(SimpleImageEditor::ImageCommands.new.commands[7].validates_format_for ["251", "3"]).to be_false
           end
         end
       end
@@ -175,14 +175,14 @@ describe SimpleImageEditor::ImageCommands do
       describe "#validates_format_for" do
         context "when the arguments are two numbers and a character" do
           it "should return true " do
-            expect(SimpleImageEditor::ImageCommands.new.commands[8].new.validates_format_for ["1", "1", "C"]).to be_true
+            expect(SimpleImageEditor::ImageCommands.new.commands[8].validates_format_for ["1", "1", "C"]).to be_true
           end
         end
 
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
-            expect(SimpleImageEditor::ImageCommands.new.commands[8].new.validates_format_for ["C", "3", "C"]).to be_false
-            expect(SimpleImageEditor::ImageCommands.new.commands[8].new.validates_format_for ["1", "3", "0"]).to be_false
+            expect(SimpleImageEditor::ImageCommands.new.commands[8].validates_format_for ["C", "3", "C"]).to be_false
+            expect(SimpleImageEditor::ImageCommands.new.commands[8].validates_format_for ["1", "3", "0"]).to be_false
           end
         end
       end

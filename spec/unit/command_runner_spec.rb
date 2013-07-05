@@ -127,18 +127,11 @@ describe SimpleImageEditor::CommandRunner do
       context "when the argument format is invalid" do
         it "should return the image" do
           stub_const("COMMAND_WITH_VALIDATION_ID", ",")
-          command = Class.new(SimpleImageEditor::Command) do
-            define_key COMMAND_WITH_VALIDATION_ID
-            number_of_arguments 2
-            def transform(image=nil,args=nil)
-              # Never called
-            end
-            def validates_format_for(args=nil)
-              false
-            end
+
+          @command_runner.command COMMAND_WITH_VALIDATION_ID, [String, String] do
+            # Never called
           end
 
-          @command_runner.add_command command
           command_line = "#{COMMAND_WITH_VALIDATION_ID} 0 0"
           expect(@command_runner.apply_on(image, command_line)).to equal(image)
         end
