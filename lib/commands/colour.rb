@@ -11,7 +11,3 @@ module SimpleImageEditor
     end
   end
 end
-
-#command 'L', [Integer, Integer, String] do |args|
-#  image.colour(args[0].to_i, args[1].to_i, args[2])
-#end

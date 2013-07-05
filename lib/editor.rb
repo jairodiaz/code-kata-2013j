@@ -18,13 +18,6 @@ module SimpleImageEditor
     # Initialize the application components.
     def initialize
       @command_runner = ImageCommands.new
-
-      commands = [ColourCommand, DrawBorderCommand,
-                  HorizontalCommand,
-                  NewImageCommand, VerticalCommand]
-
-      commands.map { |command| @command_runner.add_command command }
-
       @image = Image.new
       read_eval_loop
     end

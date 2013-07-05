@@ -24,6 +24,25 @@ module SimpleImageEditor
         image.fill_region(args[0].to_i, args[1].to_i, args[2])
       end
 
+      command 'B' , [Integer, Integer, String] do |image, args|
+        image.draw_border(args[0].to_i, args[1].to_i, args[2])
+      end
+
+      command 'H', [Integer, Integer, Integer, String] do |image, args|
+        image.horizontal(args[0].to_i, args[1].to_i, args[2].to_i, args[3])
+      end
+
+      command 'V', [Integer, Integer, Integer, String] do |image, args|
+        image.vertical(args[0].to_i, args[1].to_i, args[2].to_i, args[3])
+      end
+
+      command 'I', [Integer, Integer] do |image, args|
+        SimpleImageEditor::Image.new(args[0].to_i, args[1].to_i)
+      end
+
+      command 'L', [Integer, Integer, String] do |image, args|
+        image.colour(args[0].to_i, args[1].to_i, args[2])
+      end
     end
   end
 
