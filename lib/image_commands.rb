@@ -16,7 +16,10 @@ module SimpleImageEditor
       end
 
       add_command 'S' do |image|
-        DisplayImage.display(image)
+        display = "=>\n"
+        image.to_a.transpose.each { |row| display << row.join.concat("\n") if row }
+        display << "\n"
+        Kernel.puts display
         image
       end
 
@@ -43,19 +46,6 @@ module SimpleImageEditor
       add_command 'L', [Integer, Integer, String] do |image, args|
         image.colour(args[0].to_i, args[1].to_i, args[2])
       end
-    end
-  end
-
-  private
-
-  # Display the image to standard output.
-  class DisplayImage
-    def self.display(image)
-      table = image.to_a.transpose
-      display = "=>\n"
-      table.each { |row| display << row.join.concat("\n") if row }
-      display << "\n"
-      Kernel.puts display
     end
   end
 end
