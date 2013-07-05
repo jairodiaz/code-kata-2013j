@@ -1,7 +1,7 @@
 module SimpleImageEditor
 
   # Holds a group of commands to manipulate images.
-  class ImageCommands < CommandRunner
+  class ImageCommands < CommandSet
 
     # Creates the image commands.
     def initialize

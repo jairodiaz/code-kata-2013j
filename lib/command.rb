@@ -2,7 +2,7 @@ module SimpleImageEditor
 
   # Represents a command.
   class Command
-    include SimpleImageEditor::CommandValidations
+    include SimpleImageEditor::CommandValidatable
 
     attr_accessor :key, :block, :argument_types, :number_of_arguments
 

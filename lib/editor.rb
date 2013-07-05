@@ -1,8 +1,8 @@
 require "image"
-require "command_validations"
+require "command_Validatable"
 require "command"
 require "null_command"
-require "command_runner"
+require "command_set"
 require "image_commands"
 
 

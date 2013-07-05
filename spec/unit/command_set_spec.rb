@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe SimpleImageEditor::CommandRunner do
+describe SimpleImageEditor::CommandSet do
   before (:all) do
-    @command_runner = SimpleImageEditor::CommandRunner.new
+    @command_runner = SimpleImageEditor::CommandSet.new
   end
 
   describe "#command" do

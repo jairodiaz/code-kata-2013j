@@ -1,7 +1,7 @@
 module SimpleImageEditor
 
   # Holds a list of commands and processes the selected command.
-  class CommandRunner
+  class CommandSet
     attr_reader :commands
 
     # Intializes with an empty list of commands.

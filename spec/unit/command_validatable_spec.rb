@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe SimpleImageEditor::CommandValidations do
+describe SimpleImageEditor::CommandValidatable do
 
  class TestClass; end;
- let(:test_class) { TestClass.extend SimpleImageEditor::CommandValidations }
+ let(:test_class) { TestClass.extend SimpleImageEditor::CommandValidatable }
 
  describe "#validates_numericality_of" do
     context "when value is between 1 and 250" do
