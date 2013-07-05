@@ -32,12 +32,19 @@ module SimpleImageEditor
       command.transform(image, command_args)
     end
 
+    # Finds a command given a key.
+    # @param key The keyboard key that identifies the command.
+    # @return [Command] Returns a command.
+    def find(key)
+      @commands.find { |command_member| command_member.key == key }
+    end
+
     private
 
     # Finds a command given a key and arguments.
     # @param key The keyboard key that identifies the command.
     # @param command_args The arguments passed to the command.
-    # @return [Command] Returns a Command if the key is found and the arguments are valid. Returns a NullCommand otherwise.
+    # @return [Command] Returns a command if the key is found and the arguments are valid. Returns a NullCommand otherwise.
     def command_for(key, command_args)
       command = @commands.find { |command_member| command_member.key == key }
       return command if validate_command_for(command, command_args)

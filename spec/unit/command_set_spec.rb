@@ -28,6 +28,14 @@ describe SimpleImageEditor::CommandSet do
     end
   end
 
+  describe "#find" do
+    it 'should return a valid command' do
+      @command_runner.add_command "K" do
+      end
+      expect(@command_runner.find("K").key).to eql('K')
+    end
+  end
+
   describe "#apply_on" do
     let(:image) { double('image') }
 
