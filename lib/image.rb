@@ -7,6 +7,11 @@ module SimpleImageEditor
     attr_accessor :content, :width, :height, :flood_fill
     alias_method :to_a, :content
 
+    # Delegates the fill methods to object FloodFill
+    extend Forwardable
+    def_delegator :@flood_fill, :fill_region
+    def_delegator :@flood_fill, :draw_border
+
     # Create a new M x N image with all pixels coloured white
     def initialize(width=0, height=0)
       @width, @height = width, height
@@ -38,14 +43,6 @@ module SimpleImageEditor
       vertical(y, x1, x2, c)
       @content = @content.transpose
       self
-    end
-
-    def fill_region(x, y, new_colour, old_colour=nil, border_colour=nil)
-      @flood_fill.fill_region(x, y, new_colour, old_colour=nil, border_colour=nil)
-    end
-
-    def draw_border(x, y, border_colour)
-      @flood_fill.draw_border(x, y, border_colour)
     end
   end
 end
