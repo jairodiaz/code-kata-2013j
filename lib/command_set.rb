@@ -57,7 +57,7 @@ module SimpleImageEditor
     # @return [boolean] True if the params are correct. False otherwise.
     def validate_command_for(command, command_args)
       command &&
-      (command_args.size == command.number_of_arguments) &&
+      (command.number_of_arguments == command_args.size) &&
       command.validates_format_for(command_args)
     end
   end
