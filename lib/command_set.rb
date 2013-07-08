@@ -58,17 +58,7 @@ module SimpleImageEditor
     def validate_command_for(command, command_args)
       command &&
       (command_args.size == command.number_of_arguments) &&
-      validate_arguments_for(command, command_args)
-    end
-
-    # Validates the format of the arguments if a validation block
-    # has been defined for the command.
-    # @param command The object implementing the command.
-    # @param command_args The arguments passed to the command.
-    # @return [boolean] True if the params are valid. False otherwise.
-    def validate_arguments_for(command, command_args)
       command.validates_format_for(command_args)
     end
-
   end
 end

@@ -1,6 +1,6 @@
 require "image_floodfill"
 require "image"
-require "command_Validatable"
+require "command_validatable"
 require "command"
 require "null_command"
 require "command_set"
