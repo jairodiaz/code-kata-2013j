@@ -32,13 +32,6 @@ module SimpleImageEditor
       command.transform(image, command_args)
     end
 
-    # Finds a command given a key.
-    # @param key The keyboard key that identifies the command.
-    # @return [Command] Returns a command.
-    def find(key)
-      @commands[key]
-    end
-
     private
 
     # Finds a command given a key and arguments.

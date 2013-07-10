@@ -16,7 +16,7 @@ module SimpleImageEditor
       !! (arg =~ /[A-Z]/)
     end
 
-    # Returns true if all the arguments are of valid type or there is no argument_type information.
+    # Returns true if all the arguments are of valid type or if there is no argument_type information.
     # @param args The arguments to be checked.
     # @return [boolean].
     def validates_format_for(args)

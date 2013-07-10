@@ -39,7 +39,7 @@ describe SimpleImageEditor::ImageCommands do
 
     describe "When calling the command 'fill'" do
       it "should expect 3 arguments" do
-       expect(image_commands.find('F').number_of_arguments).to eql(3)
+       expect(image_commands.commands['F'].number_of_arguments).to eql(3)
       end
 
       it "should call to fill region on the image" do
@@ -50,14 +50,14 @@ describe SimpleImageEditor::ImageCommands do
       describe "#validates_format_for" do
         context "when the arguments are two numbers and a character" do
           it "should return true " do
-            expect(image_commands.find('F').validates_format_for ["1", "1", "C"]).to be_true
+            expect(image_commands.commands['F'].validates_format_for ["1", "1", "C"]).to be_true
           end
         end
 
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
-            expect(image_commands.find('F').validates_format_for ["C", "3", "C"]).to be_false
-            expect(image_commands.find('F').validates_format_for ["1", "3", "0"]).to be_false
+            expect(image_commands.commands['F'].validates_format_for ["C", "3", "C"]).to be_false
+            expect(image_commands.commands['F'].validates_format_for ["1", "3", "0"]).to be_false
           end
         end
       end
@@ -65,7 +65,7 @@ describe SimpleImageEditor::ImageCommands do
 
     describe "When calling the command 'draw border'" do
       it "should expect 3 arguments" do
-       expect(image_commands.find('B').number_of_arguments).to eql(3)
+       expect(image_commands.commands['B'].number_of_arguments).to eql(3)
       end
 
       it "should call to draw a border around a region" do
@@ -76,14 +76,14 @@ describe SimpleImageEditor::ImageCommands do
       describe "#validates_format_for" do
         context "when the arguments are two numbers and a character" do
           it "should return true " do
-            expect(image_commands.find('B').validates_format_for ["1", "1", "C"]).to be_true
+            expect(image_commands.commands['B'].validates_format_for ["1", "1", "C"]).to be_true
           end
         end
 
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
-            expect(image_commands.find('B').validates_format_for ["C", "3", "C"]).to be_false
-            expect(image_commands.find('B').validates_format_for ["1", "3", "0"]).to be_false
+            expect(image_commands.commands['B'].validates_format_for ["C", "3", "C"]).to be_false
+            expect(image_commands.commands['B'].validates_format_for ["1", "3", "0"]).to be_false
           end
         end
       end
@@ -91,7 +91,7 @@ describe SimpleImageEditor::ImageCommands do
 
     describe "When calling the command 'horizontal line'" do
       it "should expect 4 arguments" do
-       expect(image_commands.find('H').number_of_arguments).to eql(4)
+       expect(image_commands.commands['H'].number_of_arguments).to eql(4)
       end
 
       it "should call to draw a horizontal line" do
@@ -102,14 +102,14 @@ describe SimpleImageEditor::ImageCommands do
       describe "#validates_format_for" do
         context "when the arguments are three numbers and a character" do
           it "should return true " do
-            expect(image_commands.find('H').validates_format_for ["1", "1", "1", "C"]).to be_true
+            expect(image_commands.commands['H'].validates_format_for ["1", "1", "1", "C"]).to be_true
           end
         end
 
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
-            expect(image_commands.find('H').validates_format_for ["C", "3", "1", "C"]).to be_false
-            expect(image_commands.find('H').validates_format_for ["1", "3", "1", "0"]).to be_false
+            expect(image_commands.commands['H'].validates_format_for ["C", "3", "1", "C"]).to be_false
+            expect(image_commands.commands['H'].validates_format_for ["1", "3", "1", "0"]).to be_false
           end
         end
       end
@@ -117,7 +117,7 @@ describe SimpleImageEditor::ImageCommands do
 
    describe "When calling the command 'vertical line'" do
       it "should expect 4 arguments" do
-       expect(image_commands.find('V').number_of_arguments).to eql(4)
+       expect(image_commands.commands['V'].number_of_arguments).to eql(4)
       end
 
       it "should call to draw a vertical line" do
@@ -128,14 +128,14 @@ describe SimpleImageEditor::ImageCommands do
       describe "#validates_format_for" do
         context "when the arguments are three numbers and a character" do
           it "should return true " do
-            expect(image_commands.find('V').validates_format_for ["1", "1", "1", "C"]).to be_true
+            expect(image_commands.commands['V'].validates_format_for ["1", "1", "1", "C"]).to be_true
           end
         end
 
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
-            expect(image_commands.find('V').validates_format_for ["C", "3", "1", "C"]).to be_false
-            expect(image_commands.find('V').validates_format_for ["1", "3", "1", "0"]).to be_false
+            expect(image_commands.commands['V'].validates_format_for ["C", "3", "1", "C"]).to be_false
+            expect(image_commands.commands['V'].validates_format_for ["1", "3", "1", "0"]).to be_false
           end
         end
       end
@@ -143,7 +143,7 @@ describe SimpleImageEditor::ImageCommands do
 
    describe "When calling the command 'new image'" do
       it "should expect 2 arguments" do
-       expect(image_commands.find('I').number_of_arguments).to eql(2)
+       expect(image_commands.commands['I'].number_of_arguments).to eql(2)
       end
 
       it "should call to create new image" do
@@ -154,14 +154,14 @@ describe SimpleImageEditor::ImageCommands do
       describe "#validates_format_for" do
         context "when both arguments are numbers between 1 and 250" do
           it "should return true " do
-            expect(image_commands.find('I').validates_format_for ["5", "3"]).to be_true
+            expect(image_commands.commands['I'].validates_format_for ["5", "3"]).to be_true
           end
         end
 
         context "when one argument is NOT between 1 and 250" do
           it "should return false" do
-            expect(image_commands.find('I').validates_format_for ["0", "3"]).to be_false
-            expect(image_commands.find('I').validates_format_for ["251", "3"]).to be_false
+            expect(image_commands.commands['I'].validates_format_for ["0", "3"]).to be_false
+            expect(image_commands.commands['I'].validates_format_for ["251", "3"]).to be_false
           end
         end
       end
@@ -169,7 +169,7 @@ describe SimpleImageEditor::ImageCommands do
 
     describe "When calling the command 'colour'" do
       it "should expect 3 arguments" do
-       expect(image_commands.find('L').number_of_arguments).to eql(3)
+       expect(image_commands.commands['L'].number_of_arguments).to eql(3)
       end
 
       it "should call to colour on the image" do
@@ -180,14 +180,14 @@ describe SimpleImageEditor::ImageCommands do
       describe "#validates_format_for" do
         context "when the arguments are two numbers and a character" do
           it "should return true " do
-            expect(image_commands.find('L').validates_format_for ["1", "1", "C"]).to be_true
+            expect(image_commands.commands['L'].validates_format_for ["1", "1", "C"]).to be_true
           end
         end
 
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
-            expect(image_commands.find('L').validates_format_for ["C", "3", "C"]).to be_false
-            expect(image_commands.find('L').validates_format_for ["1", "3", "0"]).to be_false
+            expect(image_commands.commands['L'].validates_format_for ["C", "3", "C"]).to be_false
+            expect(image_commands.commands['L'].validates_format_for ["1", "3", "0"]).to be_false
           end
         end
       end
