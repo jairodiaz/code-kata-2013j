@@ -22,14 +22,18 @@ describe SimpleImageEditor::ImageCommands do
     context "when calling the command 'show'" do
       it "should do nothing to an image" do
         image = SimpleImageEditor::Image.new(2, 3)
-        Kernel.stub(:puts)
-        expect(image_commands.apply_on image, 'S').to equal(image)
+        std_output = double('std_output')
+        std_output.stub(:puts)
+        image_commands_with_output = SimpleImageEditor::ImageCommands.new(std_output)
+        expect(image_commands_with_output.apply_on image, 'S').to equal(image)
       end
 
       it "should display the image to the standard output" do
         image = SimpleImageEditor::Image.new(2, 2)
-        Kernel.should_receive(:puts).with("=>\nOO\nOO\n\n")
-        expect(image_commands.apply_on image, 'S').to equal(image)
+        std_output = double('std_output')
+        std_output.should_receive(:puts).with("=>\nOO\nOO\n\n")
+        image_commands_with_output = SimpleImageEditor::ImageCommands.new(std_output)
+        expect(image_commands_with_output.apply_on image, 'S').to equal(image)
       end
     end
 

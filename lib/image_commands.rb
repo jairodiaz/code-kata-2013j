@@ -4,8 +4,8 @@ module SimpleImageEditor
   class ImageCommands < CommandSet
 
     # Creates the image commands.
-    def initialize
-      super
+    def initialize(std_output=nil)
+      super()
 
       add_command 'C' do |image|
         image.clear
@@ -19,7 +19,7 @@ module SimpleImageEditor
         display = "=>\n"
         image.to_a.transpose.each { |row| display << row.join.concat("\n") if row }
         display << "\n"
-        Kernel.puts display
+        std_output.puts display
         image
       end
 

@@ -13,8 +13,10 @@ module SimpleImageEditor
   class Editor
 
     # Initialize the application components.
-    def initialize
-      @image_commands = ImageCommands.new
+    def initialize(std_input, std_output)
+      @std_input = std_input
+      @std_output = std_output
+      @image_commands = ImageCommands.new std_output
       @image = Image.new
       read_eval_loop
     end
@@ -28,7 +30,7 @@ module SimpleImageEditor
         @image = @image_commands.apply_on @image, selected_command
         break if @image.nil?
       end
-      Kernel.puts "Session terminated"
+      @std_output.puts "Session terminated"
     end
 
     # The string used as the command prompt.
@@ -36,8 +38,8 @@ module SimpleImageEditor
 
     # Read the command from standard input.
     def read_command
-      Kernel.print COMMAND_PROMPT
-      Kernel.gets.chomp
+      @std_output.print COMMAND_PROMPT
+      @std_input.gets.chomp
     end
   end
 end
