@@ -14,7 +14,6 @@ module SimpleImageEditor
     # @return [nil]
     def add_command(key, argument_types=[], &block)
       command = SimpleImageEditor::Command.new
-      command.key = key
       command.number_of_arguments = argument_types.size
       command.argument_types = argument_types
       command.block = block

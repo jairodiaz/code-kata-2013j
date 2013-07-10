@@ -4,7 +4,7 @@ module SimpleImageEditor
   class Command
     include SimpleImageEditor::CommandValidatable
 
-    attr_accessor :key, :block, :argument_types, :number_of_arguments
+    attr_accessor :block, :number_of_arguments, :argument_types
 
     # Executes a predefined block that implements the command functionalty.
     # @param image The image to be processed.
