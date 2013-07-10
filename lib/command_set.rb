@@ -6,7 +6,7 @@ module SimpleImageEditor
 
     # Intializes with an empty list of commands.
     def initialize
-      @commands = []
+      @commands = {}
     end
 
     # Adds a command to the list.
@@ -18,7 +18,7 @@ module SimpleImageEditor
       command.number_of_arguments = argument_types.size
       command.argument_types = argument_types
       command.block = block
-      commands << command
+      commands[key] = command
     end
 
     # Identifies a command in the command line and process the command passing the image.
@@ -36,7 +36,7 @@ module SimpleImageEditor
     # @param key The keyboard key that identifies the command.
     # @return [Command] Returns a command.
     def find(key)
-      @commands.find { |command_member| command_member.key == key }
+      @commands[key]
     end
 
     private
@@ -46,7 +46,7 @@ module SimpleImageEditor
     # @param command_args The arguments passed to the command.
     # @return [Command] Returns a command if the key is found and the arguments are valid. Returns a NullCommand otherwise.
     def command_for(key, command_args)
-      command = @commands.find { |command_member| command_member.key == key }
+      command = @commands[key]
       return command if validate_command_for(command, command_args)
       NullCommand
     end
