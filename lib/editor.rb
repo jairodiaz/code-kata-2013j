@@ -1,10 +1,10 @@
-require "image_floodfill"
-require "image"
-require "command_validatable"
-require "command"
-require "null_command"
-require "command_set"
-require "image_commands"
+require "simple_image_editor/image_floodfill"
+require "simple_image_editor/image"
+require "simple_image_editor/command_validatable"
+require "simple_image_editor/command"
+require "simple_image_editor/null_command"
+require "simple_image_editor/command_set"
+require "simple_image_editor/image_commands"
 
 
 module SimpleImageEditor
@@ -28,6 +28,8 @@ module SimpleImageEditor
       loop do
         selected_command = read_command
         @image = @image_commands.apply_on @image, selected_command
+        #image.command ('soething')
+        #add a carpeta - para los modulos
         break if @image.nil?
       end
       @std_output.puts "Session terminated"
