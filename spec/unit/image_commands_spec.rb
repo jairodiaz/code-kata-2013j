@@ -15,7 +15,7 @@ describe SimpleImageEditor::ImageCommands do
 
     context "when calling the command 'exit'" do
       it "should return 'nil'" do
-        expect(image_commands.execute 'X').to eql(nil)
+        expect { image_commands.execute 'X'}.to throw_symbol(:exit)
       end
     end
 

@@ -12,7 +12,7 @@ module SimpleImageEditor
       end
 
       add_command 'X' do |image|
-        nil
+        throw :exit
       end
 
       add_command 'S' do |image|

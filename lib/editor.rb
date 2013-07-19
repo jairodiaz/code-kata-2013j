@@ -24,8 +24,10 @@ module SimpleImageEditor
 
     # Start a read-eval-loop.
     def read_eval_loop
-      loop do
-        break unless @commands.execute read_command
+      catch :exit do
+        loop do
+          @commands.execute read_command
+        end
       end
       @std_output.puts "Session terminated"
     end
