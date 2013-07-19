@@ -16,8 +16,7 @@ module SimpleImageEditor
     def initialize(std_input, std_output)
       @std_input = std_input
       @std_output = std_output
-      @image_commands = ImageCommands.new std_output
-      @image = Image.new
+      @commands = ImageCommands.new(Image.new, std_output)
       read_eval_loop
     end
 
@@ -26,11 +25,7 @@ module SimpleImageEditor
     # Start a read-eval-loop.
     def read_eval_loop
       loop do
-        selected_command = read_command
-        @image = @image_commands.apply_on @image, selected_command
-        #image.command ('soething')
-        #add a carpeta - para los modulos
-        break if @image.nil?
+        break unless @commands.execute read_command
       end
       @std_output.puts "Session terminated"
     end

@@ -4,8 +4,8 @@ module SimpleImageEditor
   class ImageCommands < CommandSet
 
     # Creates the image commands.
-    def initialize(std_output=nil)
-      super()
+    def initialize(image, std_output=nil)
+      super(image)
 
       add_command 'C' do |image|
         image.clear

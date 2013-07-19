@@ -2,38 +2,38 @@ require 'spec_helper'
 
 describe SimpleImageEditor::ImageCommands do
 
-  describe '#apply_on' do
+  describe '#execute' do
     let(:image) { double('image') }
-    let(:image_commands) { SimpleImageEditor::ImageCommands.new }
+    let(:image_commands) { SimpleImageEditor::ImageCommands.new image}
 
     context "when calling the command 'clear'" do
       it "should call to clear on the image" do
         image.should_receive(:clear)
-        image_commands.apply_on image, 'C'
+        image_commands.execute 'C'
       end
     end
 
     context "when calling the command 'exit'" do
       it "should return 'nil'" do
-        expect(image_commands.apply_on image, 'X').to eql(nil)
+        expect(image_commands.execute 'X').to eql(nil)
       end
     end
 
     context "when calling the command 'show'" do
+      let (:std_output) { double('std_output') }
+
       it "should do nothing to an image" do
-        image = SimpleImageEditor::Image.new(2, 3)
-        std_output = double('std_output')
         std_output.stub(:puts)
-        image_commands_with_output = SimpleImageEditor::ImageCommands.new(std_output)
-        expect(image_commands_with_output.apply_on image, 'S').to equal(image)
+        image.stub(:to_a).and_return([])
+        image_commands_with_output = SimpleImageEditor::ImageCommands.new(image, std_output)
+        expect(image_commands_with_output.execute 'S').to equal(image)
       end
 
       it "should display the image to the standard output" do
         image = SimpleImageEditor::Image.new(2, 2)
-        std_output = double('std_output')
         std_output.should_receive(:puts).with("=>\nOO\nOO\n\n")
-        image_commands_with_output = SimpleImageEditor::ImageCommands.new(std_output)
-        expect(image_commands_with_output.apply_on image, 'S').to equal(image)
+        image_commands_with_output = SimpleImageEditor::ImageCommands.new(image, std_output)
+        expect(image_commands_with_output.execute 'S').to equal(image)
       end
     end
 
@@ -44,7 +44,7 @@ describe SimpleImageEditor::ImageCommands do
 
       it "should call to fill region on the image" do
         image.should_receive(:fill_region).with(2, 4, "C")
-        image_commands.apply_on image, 'F 2 4 C'
+        image_commands.execute 'F 2 4 C'
       end
 
       describe "#validates_format_for" do
@@ -70,7 +70,7 @@ describe SimpleImageEditor::ImageCommands do
 
       it "should call to draw a border around a region" do
         image.should_receive(:draw_border).with(2, 4, "C")
-        image_commands.apply_on image, 'B 2 4 C'
+        image_commands.execute 'B 2 4 C'
       end
 
       describe "#validates_format_for" do
@@ -96,7 +96,7 @@ describe SimpleImageEditor::ImageCommands do
 
       it "should call to draw a horizontal line" do
         image.should_receive(:horizontal).with(3, 2, 4, "C")
-        image_commands.apply_on image, 'H 3 2 4 C'
+        image_commands.execute 'H 3 2 4 C'
       end
 
       describe "#validates_format_for" do
@@ -122,7 +122,7 @@ describe SimpleImageEditor::ImageCommands do
 
       it "should call to draw a vertical line" do
         image.should_receive(:vertical).with(3, 2, 4, "C")
-        image_commands.apply_on image, 'V 3 2 4 C'
+        image_commands.execute 'V 3 2 4 C'
       end
 
       describe "#validates_format_for" do
@@ -148,7 +148,7 @@ describe SimpleImageEditor::ImageCommands do
 
       it "should call to create new image" do
         SimpleImageEditor::Image.should_receive(:new).with(5, 3)
-        image_commands.apply_on image, 'I 5 3'
+        image_commands.execute 'I 5 3'
       end
 
       describe "#validates_format_for" do
@@ -174,7 +174,7 @@ describe SimpleImageEditor::ImageCommands do
 
       it "should call to colour on the image" do
         image.should_receive(:colour).with(1, 1, "C")
-        image_commands.apply_on image, 'L 1 1 C'
+        image_commands.execute 'L 1 1 C'
       end
 
       describe "#validates_format_for" do

@@ -5,8 +5,9 @@ module SimpleImageEditor
     attr_reader :commands
 
     # Intializes with an empty list of commands.
-    def initialize
+    def initialize(image)
       @commands = {}
+      @image = image
     end
 
     # Adds a command to the list.
@@ -20,15 +21,15 @@ module SimpleImageEditor
       commands[key] = command
     end
 
-    # Identifies a command in the command line and process the command passing the image.
+    # Executes a command in the command line.
     # @param image The image object.
     # @param command_line The command line string.
     # @return [Image] A new image after the command has been processed.
-    def apply_on(image, command_line)
+    def execute(command_line)
       command_args = command_line.split
       key = command_args.shift
       command = command_for(key, command_args)
-      command.transform(image, command_args)
+      @image = command.transform(@image, command_args)
     end
 
     private
