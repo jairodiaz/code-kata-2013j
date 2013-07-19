@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SimpleImageEditor::Command do
-  let(:my_command) { SimpleImageEditor::Command.new }
+  let(:my_command) { SimpleImageEditor::Command.new [], lambda{} }
 
   describe "#block" do
     it "should define a block" do

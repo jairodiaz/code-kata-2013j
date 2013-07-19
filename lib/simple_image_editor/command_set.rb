@@ -5,6 +5,7 @@ module SimpleImageEditor
     attr_reader :commands
 
     # Intializes with an empty list of commands.
+    # @param image The image object.
     def initialize(image)
       @commands = {}
       @image = image
@@ -14,15 +15,10 @@ module SimpleImageEditor
     # @param key The keyboard key that identifies the command.
     # @return [nil]
     def add_command(key, argument_types=[], &block)
-      command = SimpleImageEditor::Command.new
-      command.number_of_arguments = argument_types.size
-      command.argument_types = argument_types
-      command.block = block
-      commands[key] = command
+      commands[key] = SimpleImageEditor::Command.new argument_types, block
     end
 
     # Executes a command in the command line.
-    # @param image The image object.
     # @param command_line The command line string.
     # @return [Image] A new image after the command has been processed.
     def execute(command_line)
@@ -40,7 +36,7 @@ module SimpleImageEditor
     # @return [Command] Returns a command if the key is found and the arguments are valid. Returns a NullCommand otherwise.
     def command_for(key, command_args)
       command = @commands[key]
-      return command if validate_command_for(command, command_args)
+      return command if valid_command?(command, command_args)
       NullCommand
     end
 
@@ -48,10 +44,10 @@ module SimpleImageEditor
     # @param command The object implementing the command.
     # @param command_args The arguments passed to the command.
     # @return [boolean] True if the params are correct. False otherwise.
-    def validate_command_for(command, command_args)
+    def valid_command?(command, command_args)
       command &&
       (command.number_of_arguments == command_args.size) &&
-      command.validates_format_for(command_args)
+      command.valid_format?(command_args)
     end
   end
 end

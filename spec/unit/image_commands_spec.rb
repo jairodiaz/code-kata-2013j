@@ -47,17 +47,17 @@ describe SimpleImageEditor::ImageCommands do
         image_commands.execute 'F 2 4 C'
       end
 
-      describe "#validates_format_for" do
+      describe "#valid_format?" do
         context "when the arguments are two numbers and a character" do
           it "should return true " do
-            expect(image_commands.commands['F'].validates_format_for ["1", "1", "C"]).to be_true
+            expect(image_commands.commands['F'].valid_format? ["1", "1", "C"]).to be_true
           end
         end
 
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
-            expect(image_commands.commands['F'].validates_format_for ["C", "3", "C"]).to be_false
-            expect(image_commands.commands['F'].validates_format_for ["1", "3", "0"]).to be_false
+            expect(image_commands.commands['F'].valid_format? ["C", "3", "C"]).to be_false
+            expect(image_commands.commands['F'].valid_format? ["1", "3", "0"]).to be_false
           end
         end
       end
@@ -73,17 +73,17 @@ describe SimpleImageEditor::ImageCommands do
         image_commands.execute 'B 2 4 C'
       end
 
-      describe "#validates_format_for" do
+      describe "#valid_format?" do
         context "when the arguments are two numbers and a character" do
           it "should return true " do
-            expect(image_commands.commands['B'].validates_format_for ["1", "1", "C"]).to be_true
+            expect(image_commands.commands['B'].valid_format? ["1", "1", "C"]).to be_true
           end
         end
 
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
-            expect(image_commands.commands['B'].validates_format_for ["C", "3", "C"]).to be_false
-            expect(image_commands.commands['B'].validates_format_for ["1", "3", "0"]).to be_false
+            expect(image_commands.commands['B'].valid_format? ["C", "3", "C"]).to be_false
+            expect(image_commands.commands['B'].valid_format? ["1", "3", "0"]).to be_false
           end
         end
       end
@@ -99,17 +99,17 @@ describe SimpleImageEditor::ImageCommands do
         image_commands.execute 'H 3 2 4 C'
       end
 
-      describe "#validates_format_for" do
+      describe "#valid_format?" do
         context "when the arguments are three numbers and a character" do
           it "should return true " do
-            expect(image_commands.commands['H'].validates_format_for ["1", "1", "1", "C"]).to be_true
+            expect(image_commands.commands['H'].valid_format? ["1", "1", "1", "C"]).to be_true
           end
         end
 
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
-            expect(image_commands.commands['H'].validates_format_for ["C", "3", "1", "C"]).to be_false
-            expect(image_commands.commands['H'].validates_format_for ["1", "3", "1", "0"]).to be_false
+            expect(image_commands.commands['H'].valid_format? ["C", "3", "1", "C"]).to be_false
+            expect(image_commands.commands['H'].valid_format? ["1", "3", "1", "0"]).to be_false
           end
         end
       end
@@ -125,17 +125,17 @@ describe SimpleImageEditor::ImageCommands do
         image_commands.execute 'V 3 2 4 C'
       end
 
-      describe "#validates_format_for" do
+      describe "#valid_format?" do
         context "when the arguments are three numbers and a character" do
           it "should return true " do
-            expect(image_commands.commands['V'].validates_format_for ["1", "1", "1", "C"]).to be_true
+            expect(image_commands.commands['V'].valid_format? ["1", "1", "1", "C"]).to be_true
           end
         end
 
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
-            expect(image_commands.commands['V'].validates_format_for ["C", "3", "1", "C"]).to be_false
-            expect(image_commands.commands['V'].validates_format_for ["1", "3", "1", "0"]).to be_false
+            expect(image_commands.commands['V'].valid_format? ["C", "3", "1", "C"]).to be_false
+            expect(image_commands.commands['V'].valid_format? ["1", "3", "1", "0"]).to be_false
           end
         end
       end
@@ -151,17 +151,17 @@ describe SimpleImageEditor::ImageCommands do
         image_commands.execute 'I 5 3'
       end
 
-      describe "#validates_format_for" do
+      describe "#valid_format?" do
         context "when both arguments are numbers between 1 and 250" do
           it "should return true " do
-            expect(image_commands.commands['I'].validates_format_for ["5", "3"]).to be_true
+            expect(image_commands.commands['I'].valid_format? ["5", "3"]).to be_true
           end
         end
 
         context "when one argument is NOT between 1 and 250" do
           it "should return false" do
-            expect(image_commands.commands['I'].validates_format_for ["0", "3"]).to be_false
-            expect(image_commands.commands['I'].validates_format_for ["251", "3"]).to be_false
+            expect(image_commands.commands['I'].valid_format? ["0", "3"]).to be_false
+            expect(image_commands.commands['I'].valid_format? ["251", "3"]).to be_false
           end
         end
       end
@@ -177,17 +177,17 @@ describe SimpleImageEditor::ImageCommands do
         image_commands.execute 'L 1 1 C'
       end
 
-      describe "#validates_format_for" do
+      describe "#valid_format?" do
         context "when the arguments are two numbers and a character" do
           it "should return true " do
-            expect(image_commands.commands['L'].validates_format_for ["1", "1", "C"]).to be_true
+            expect(image_commands.commands['L'].valid_format? ["1", "1", "C"]).to be_true
           end
         end
 
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
-            expect(image_commands.commands['L'].validates_format_for ["C", "3", "C"]).to be_false
-            expect(image_commands.commands['L'].validates_format_for ["1", "3", "0"]).to be_false
+            expect(image_commands.commands['L'].valid_format? ["C", "3", "C"]).to be_false
+            expect(image_commands.commands['L'].valid_format? ["1", "3", "0"]).to be_false
           end
         end
       end
