@@ -9,8 +9,8 @@ describe SimpleImageEditor::Command do
   it { should respond_to :argument_types }
   it { should respond_to :transform }
 
-  describe "#block" do
-    it "should be called by transform" do
+  describe "#transform" do
+    it "should call the block" do
       block = lambda { |image, args| true }
       block.should_receive(:call).with(:image, :arg0, :arg1)
       my_command = SimpleImageEditor::Command.new [], block
