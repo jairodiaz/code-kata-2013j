@@ -14,11 +14,13 @@ describe SimpleImageEditor::CommandValidatable do
         (1..250).each { |x| expect(test_class.valid_number?(x)).to be_true }
       end
     end
+
     context "when value is 0" do
       it "should return false" do
         expect(test_class.valid_number?(0)).to be_false
       end
     end
+
     context "when value is 251" do
       it "should return false" do
         expect(test_class.valid_number?(251)).to be_false

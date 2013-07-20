@@ -4,8 +4,9 @@ describe SimpleImageEditor::CommandSet do
   let(:image) { double('image') }
   let(:command_set) { SimpleImageEditor::CommandSet.new image}
 
-  describe "#command" do
+  it { command_set.should respond_to :commands}
 
+  describe "#command" do
     it 'should add a command to the list' do
       command_set.add_command "Q"
       expect(command_set.commands["Q"]).to be_an_instance_of SimpleImageEditor::Command
@@ -29,7 +30,7 @@ describe SimpleImageEditor::CommandSet do
   end
 
   describe "#execute" do
-    context 'when the command is defined and requested on the command line' do
+    context 'when the command is defined' do
 
       context 'when there is not arguments' do
         it "should return true" do
