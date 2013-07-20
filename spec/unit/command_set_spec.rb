@@ -12,9 +12,9 @@ describe SimpleImageEditor::CommandSet do
     end
 
     it 'should add a block to the command' do
-      block = lambda { true }
+      block = lambda { |image, args| true }
       command_set.add_command "Q", &block
-      expect(command_set.commands["Q"].block).to eql(block)
+      expect(command_set.commands["Q"].transform(nil,nil)).to be_true
     end
 
     it 'should add a number_of_arguments to the command' do

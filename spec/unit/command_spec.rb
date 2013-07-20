@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SimpleImageEditor::Command do
-  let(:my_command) { SimpleImageEditor::Command.new [], lambda{} }
+  let(:my_command) { SimpleImageEditor::Command.new([], lambda{}) }
 
   subject { my_command }
 
@@ -9,13 +9,10 @@ describe SimpleImageEditor::Command do
   it { should respond_to :argument_types }
   it { should respond_to :transform }
 
-  describe "#transform" do
-    it "should call the block" do
-      block = lambda { |image, args| true }
-      block.should_receive(:call).with(:image, :arg0, :arg1)
-      my_command = SimpleImageEditor::Command.new [], block
-      my_command.transform(:image, :arg0, :arg1)
-    end
-  end
+  it { should respond_to :valid_format? }
 
+  describe "#transform" do
+    it { expect { |b| SimpleImageEditor::Command.new([], lambda { |i, a| instance_eval &b })
+         .transform(nil, nil) }.to yield_control }
+  end
 end

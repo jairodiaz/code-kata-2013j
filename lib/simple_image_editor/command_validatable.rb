@@ -2,19 +2,6 @@ module SimpleImageEditor
 
   #Implements validation methods for a command.
   module CommandValidatable
-    # Returns true if the arguments is a numbers between 1 and 250.
-    # @param args The argument to be checked.
-    # @return [boolean].
-    def valid_number?(arg)
-      arg.to_i >= 1 && arg.to_i <= 250
-    end
-
-    # Returns true if the argument is a valid color (a capital letter).
-    # @param args The arg to be checked.
-    # @return [boolean].
-    def valid_color?(arg)
-      !! (arg =~ /[A-Z]/)
-    end
 
     # Returns true if all the arguments are of valid type or there is nothing to validate.
     # @param args The arguments to be checked.
@@ -30,7 +17,19 @@ module SimpleImageEditor
       true
     end
 
-    private
+    # Returns true if the arguments is a numbers between 1 and 250.
+    # @param args The argument to be checked.
+    # @return [boolean].
+    def valid_number?(arg)
+      arg.to_i >= 1 && arg.to_i <= 250
+    end
+
+    # Returns true if the argument is a valid color (a capital letter).
+    # @param args The arg to be checked.
+    # @return [boolean].
+    def valid_color?(arg)
+      !! (arg =~ /[A-Z]/)
+    end
 
     # Returns true if a given argument is valid applying the rigth validation rule.
     # @param arg The argument to be validated.

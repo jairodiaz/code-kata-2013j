@@ -4,7 +4,7 @@ module SimpleImageEditor
   class Command
     include SimpleImageEditor::CommandValidatable
 
-    attr_accessor :number_of_arguments, :argument_types
+    attr_reader :number_of_arguments, :argument_types
 
     # Initializes a new command.
     # @param argument_types An array containing the type of parameters for validation.
