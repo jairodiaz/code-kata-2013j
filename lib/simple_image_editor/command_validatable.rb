@@ -16,20 +16,32 @@ module SimpleImageEditor
       !! (arg =~ /[A-Z]/)
     end
 
-    # Returns true if all the arguments are of valid type or if there is no argument_type information.
+    # Returns true if all the arguments are of valid type or there is nothing to validate.
     # @param args The arguments to be checked.
     # @return [boolean].
     def valid_format?(args)
+      # No validation required
       return true if self.argument_types.nil?
+
       args.each_with_index do |arg, index|
-        result = if self.argument_types[index] == Integer
+        return false unless valid_argument_at_index(arg, index)
+      end
+
+      true
+    end
+
+    private
+
+    # Returns true if a given argument is valid applying the rigth validation rule.
+    # @param arg The argument to be validated.
+    # @param index The argument position in the parameter list to determine the validation rule.
+    # @return [boolean].
+    def valid_argument_at_index(arg, index)
+      if self.argument_types[index] == Integer
           valid_number?(arg)
         else
           valid_color?(arg)
         end
-        return false unless result
       end
-      true
     end
-  end
 end

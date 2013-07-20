@@ -1,18 +1,20 @@
 module SimpleImageEditor
 
-  # Holds a list of commands and processes the selected command.
+  # Holds a list of commands and executes the selected command on a target object.
   class CommandSet
     attr_reader :commands
 
     # Intializes with an empty list of commands.
-    # @param image The image object.
-    def initialize(image)
+    # @param target_object The object to apply the commands upon.
+    def initialize(target_object)
       @commands = {}
-      @image = image
+      @target_object = target_object
     end
 
     # Adds a command to the list.
     # @param key The keyboard key that identifies the command.
+    # @param argument_types An array of types to validate the command arguments.
+    # @param block A block to execute when the command is called.
     # @return [nil]
     def add_command(key, argument_types=[], &block)
       commands[key] = SimpleImageEditor::Command.new argument_types, block
@@ -20,12 +22,12 @@ module SimpleImageEditor
 
     # Executes a command in the command line.
     # @param command_line The command line string.
-    # @return [Image] A new image after the command has been processed.
+    # @return [object] A new target_object after the command has been processed.
     def execute(command_line)
       command_args = command_line.split
       key = command_args.shift
       command = command_for(key, command_args)
-      @image = command.transform(@image, command_args)
+      @target_object = command.transform(@target_object, command_args)
     end
 
     private

@@ -6,7 +6,6 @@ module SimpleImageEditor
 
     attr_accessor :block, :number_of_arguments, :argument_types
 
-
     # Initializes a new command.
     # @param argument_types An array containing the type of parameters for validation.
     # @param block A block to execute when the command is called.
@@ -18,11 +17,11 @@ module SimpleImageEditor
     end
 
     # Executes a predefined block that implements the command functionalty.
-    # @param image The image to be processed.
-    # @param args The arguments required for the block to process the image.
+    # @param target_object The target_object to be modified by the command.
+    # @param args Additional arguments for the block to process the target_object.
     # @returns[Image].
-    def transform(image, *args)
-      block.call(image, *args)
+    def transform(target_object, *args)
+      block.call(target_object, *args)
     end
 
   end
