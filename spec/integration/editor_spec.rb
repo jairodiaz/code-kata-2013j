@@ -34,51 +34,51 @@ describe SimpleImageEditor::Editor do
 
     it "should create a new image with I" do
       std_input.stub(:gets).and_return("I 3 3\n","S\n", "X\n")
-      std_output.should_receive(:puts).with("=>\nOOO\n
-                                                 OOO\n
-                                                 OOO\n\n").ordered
+      std_output.should_receive(:puts).with("=>\nOOO" +
+                                              "\nOOO" +
+                                              "\nOOO\n\n").ordered
     end
 
     it "should colour a pixel with L" do
       std_input.stub(:gets).and_return("I 3 3\n", "L 1 1 X\n", "S\n", "X\n")
-      std_output.should_receive(:puts).with("=>\nXOO\n
-                                                 OOO\n
-                                                 OOO\n\n").ordered
+      std_output.should_receive(:puts).with("=>\nXOO" +
+                                              "\nOOO" +
+                                              "\nOOO\n\n").ordered
     end
 
     it "should clear the table with C" do
       std_input.stub(:gets).and_return("I 3 3\n", "L 1 1 X\n", "C\n", "S\n", "X\n")
-      std_output.should_receive(:puts).with("=>\nOOO
-                                               \nOOO\n
-                                                 OOO\n\n").ordered
+      std_output.should_receive(:puts).with("=>\nOOO" +
+                                              "\nOOO" +
+                                              "\nOOO\n\n").ordered
     end
 
     it "should draw a vertical line with V" do
       std_input.stub(:gets).and_return("I 3 3\n", "V 1 1 3 X\n", "S\n", "X\n")
-      std_output.should_receive(:puts).with("=>\nXOO\n
-                                                 XOO\n
-                                                 XOO\n\n").ordered
+      std_output.should_receive(:puts).with("=>\nXOO" +
+                                              "\nXOO" +
+                                              "\nXOO\n\n").ordered
     end
 
     it "should draw a horizontal line with H" do
       std_input.stub(:gets).and_return("I 3 3\n", "H 1 3 3 X\n", "S\n", "X\n")
-      std_output.should_receive(:puts).with("=>\nOOO
-                                               \nOOO\n
-                                                 XXX\n\n").ordered
+      std_output.should_receive(:puts).with("=>\nOOO" +
+                                              "\nOOO" +
+                                              "\nXXX\n\n").ordered
     end
 
     it "should fill a region with colour with F" do
       std_input.stub(:gets).and_return("I 3 3\n", "H 1 3 2 A\n", "V 2 2 3 A\n", "F 2 2 X","S\n", "X\n")
-      std_output.should_receive(:puts).with("=>\nOOO
-                                               \nXXX
-                                                \nOXO\n\n").ordered
+      std_output.should_receive(:puts).with("=>\nOOO" +
+                                              "\nXXX" +
+                                              "\nOXO\n\n").ordered
     end
 
     it "should draw a border around region with colour with B" do
       std_input.stub(:gets).and_return("I 3 3\n", "H 1 3 2 A\n", "V 2 2 3 A\n", "B 2 2 X","S\n", "X\n")
-      std_output.should_receive(:puts).with("=>\nXXX
-                                               \nAAA
-                                               \nXAX\n\n").ordered
+      std_output.should_receive(:puts).with("=>\nXXX" +
+                                              "\nAAA" +
+                                              "\nXAX\n\n").ordered
     end
 
     it "should show the prompt '> ' after Enter" do
