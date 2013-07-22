@@ -6,7 +6,7 @@ module SimpleImageEditor
   class Image
     WHITE_COLOUR = 'O'
 
-    attr_accessor :content, :width, :height, :flood_fill
+    attr_accessor :content, :width, :height
     alias_method :to_a, :content
 
     # Delegates the fill methods to object FloodFill
@@ -15,9 +15,9 @@ module SimpleImageEditor
     def_delegator :@flood_fill, :draw_border
 
     # Create a new M x N image with all pixels coloured white
-    def initialize(width=0, height=0)
+    def initialize(width=0, height=0, flood_fill = SimpleImageEditor::FloodFill.new(self, WHITE_COLOUR))
       @width, @height = width, height
-      @flood_fill = SimpleImageEditor::FloodFill.new(self, WHITE_COLOUR)
+      @flood_fill = flood_fill
       clear
     end
 

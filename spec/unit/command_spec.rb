@@ -12,7 +12,7 @@ describe SimpleImageEditor::Command do
   it { should respond_to :valid_format? }
 
   describe "#transform" do
-    it { expect { |b| SimpleImageEditor::Command.new([], lambda { |i, a| instance_eval &b })
+    it { expect { |block| SimpleImageEditor::Command.new([], lambda { |i, a| instance_eval &block })
          .transform(nil, nil) }.to yield_control }
   end
 end

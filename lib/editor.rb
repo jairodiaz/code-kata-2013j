@@ -6,7 +6,6 @@ require "simple_image_editor/null_command"
 require "simple_image_editor/command_set"
 require "simple_image_editor/image_commands"
 
-
 module SimpleImageEditor
 
   # Edits images taking commands using a read-eval-loop.

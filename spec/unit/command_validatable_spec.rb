@@ -50,7 +50,7 @@ describe SimpleImageEditor::CommandValidatable do
       end.new
     end
 
-    context "when argument match the expected type" do
+    context "when argument matches the expected type" do
       it "should be true for an Integer argument" do
         new_command.argument_types = [Integer]
         expect(new_command.valid_format?(["3"])).to be_true
@@ -67,14 +67,14 @@ describe SimpleImageEditor::CommandValidatable do
       end
     end
 
-    context "when the arguments does not match the expected type" do
+    context "when the arguments do not match the expected type" do
       it "should be false when expecting a String but gets an Integer argument" do
         new_command.argument_types = [Integer, Integer, String]
         expect(new_command.valid_format?(["1", "1", "0"])).to be_false
       end
     end
 
-    context "when argument_types is not defined" do
+    context "when argument_types variable is not defined" do
       it "should return true" do
         new_command.argument_types = nil
         expect(new_command.valid_format?(["1", "1"])).to be_true

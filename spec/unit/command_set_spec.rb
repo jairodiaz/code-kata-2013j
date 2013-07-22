@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SimpleImageEditor::CommandSet do
-  let(:image) { double('image') }
+  let(:image) { double('image').as_null_object }
   let(:command_set) { SimpleImageEditor::CommandSet.new image}
 
   it { command_set.should respond_to :commands}

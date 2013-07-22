@@ -57,7 +57,6 @@ describe SimpleImageEditor::ImageCommands do
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
             expect(image_commands.commands['F'].valid_format? ["C", "3", "C"]).to be_false
-            expect(image_commands.commands['F'].valid_format? ["1", "3", "0"]).to be_false
           end
         end
       end
@@ -83,7 +82,6 @@ describe SimpleImageEditor::ImageCommands do
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
             expect(image_commands.commands['B'].valid_format? ["C", "3", "C"]).to be_false
-            expect(image_commands.commands['B'].valid_format? ["1", "3", "0"]).to be_false
           end
         end
       end
@@ -109,7 +107,6 @@ describe SimpleImageEditor::ImageCommands do
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
             expect(image_commands.commands['H'].valid_format? ["C", "3", "1", "C"]).to be_false
-            expect(image_commands.commands['H'].valid_format? ["1", "3", "1", "0"]).to be_false
           end
         end
       end
@@ -135,7 +132,6 @@ describe SimpleImageEditor::ImageCommands do
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
             expect(image_commands.commands['V'].valid_format? ["C", "3", "1", "C"]).to be_false
-            expect(image_commands.commands['V'].valid_format? ["1", "3", "1", "0"]).to be_false
           end
         end
       end
@@ -161,7 +157,6 @@ describe SimpleImageEditor::ImageCommands do
         context "when one argument is NOT between 1 and 250" do
           it "should return false" do
             expect(image_commands.commands['I'].valid_format? ["0", "3"]).to be_false
-            expect(image_commands.commands['I'].valid_format? ["251", "3"]).to be_false
           end
         end
       end
@@ -187,7 +182,6 @@ describe SimpleImageEditor::ImageCommands do
         context "when the arguments are NOT three numbers and a character" do
           it "should return false" do
             expect(image_commands.commands['L'].valid_format? ["C", "3", "C"]).to be_false
-            expect(image_commands.commands['L'].valid_format? ["1", "3", "0"]).to be_false
           end
         end
       end

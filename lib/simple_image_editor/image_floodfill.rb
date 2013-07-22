@@ -28,7 +28,7 @@ module SimpleImageEditor
       # Base case. If the current x, y character is not the old_colour,
       # then do nothing. However, the current character may be a border
       # so check it.
-      if (@image.content[x][y] != old_colour)
+      if @image.content[x][y] != old_colour
         colour_border(x, y, new_colour, border_colour) if border_colour
         return
       end
