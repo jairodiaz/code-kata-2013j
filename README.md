@@ -1,4 +1,12 @@
-# Code Example
+# Code Kata
+
+This is a code kata to become a better developer by applying refactoring and test-driven methodologies as described in these two videos:
+
+[John Pignata - Talk: Code Smells: Your Refactoring Cheat Codes](http://tx.pignata.com/2013/04/mwrc-code-smells-talk.html)
+
+[Andy Lindeman -  Building a mocking library](http://www.youtube.com/watch?v=2aYdtS7FZJA&feature=youtu.be)
+
+# The Challenge
 
 Graphical editors allow users to edit images in the same way text editors let us modify documents. Images are represented as an M x N array of pixels with each pixel given colour.
 Produce a program that simulates a simple interactive graphical editor.
